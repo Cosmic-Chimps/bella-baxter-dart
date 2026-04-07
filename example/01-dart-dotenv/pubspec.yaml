@@ -1,0 +1,9 @@
+name: bella_dart_dotenv
+description: >
+  Sample 01: reads secrets from a .env file written by bella secrets get.
+version: 1.0.0
+environment:
+  sdk: '>=2.18.0 <4.0.0'
+
+dependencies:
+  dotenv: ^4.2.0

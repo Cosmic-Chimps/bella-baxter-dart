@@ -1,0 +1,12 @@
+# .pubignore — controls what pub includes when publishing.
+# When this file exists, pub uses it instead of .gitignore.
+# List files/dirs to EXCLUDE from the published package.
+
+# Development & CI
+.github/
+test-samples.sh
+analysis_options.yaml
+
+# Local secrets / environment
+.env
+*.env

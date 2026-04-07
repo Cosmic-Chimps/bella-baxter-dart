@@ -1,0 +1,11 @@
+name: bella_sample_dart_cli
+description: Sample Dart CLI app that loads secrets from Bella Baxter at startup.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  bella_baxter:
+    path: ../../

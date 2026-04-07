@@ -1,0 +1,12 @@
+name: bella_sample_dart_shelf
+description: Dart shelf web server that loads secrets from Bella Baxter at startup.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  bella_baxter:
+    path: ../../
+  shelf: ^1.4.0
