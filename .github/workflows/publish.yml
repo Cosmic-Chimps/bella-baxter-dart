@@ -50,6 +50,21 @@ jobs:
           sed -i "s/^version: .*/version: $VERSION/" pubspec.yaml
           echo "Updated pubspec.yaml version to $VERSION"
 
+      - name: Generate Dart client from OpenAPI spec
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/openapi.json:/openapi.json:ro" \
+            -v "${{ github.workspace }}:/output" \
+            openapitools/openapi-generator-cli:latest generate \
+              -i /openapi.json \
+              -g dart-dio \
+              -o /output \
+              --additional-properties=pubName=bella_baxter,nullSafe=true,browserClient=false \
+              --skip-validate-spec 2>&1 | grep -v "^\[main\]" || true
+
+      - name: Fix generated Dart imports
+        run: dart fix --apply lib/src/api/ || true
+
       - name: Install dependencies
         run: dart pub get
 
