@@ -6,6 +6,7 @@ analyzer:
   exclude:
     - test/*.dart
     - lib/src/model/**  # openapi-generator output — not tracked in git
+    - lib/src/api/**   # openapi-generator output — not tracked in git
   errors:
     deprecated_member_use_from_same_package: ignore
     class_used_as_mixin: ignore  # openapi-generator generates Dart 2-style mixins
