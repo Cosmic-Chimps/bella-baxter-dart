@@ -62,6 +62,9 @@ jobs:
               --additional-properties=pubName=bella_baxter,nullSafe=true,browserClient=false \
               --skip-validate-spec 2>&1 | grep -v "^\[main\]" || true
 
+      - name: Fix ownership after Docker (Docker runs as root, files must be runner-owned)
+        run: sudo chown -R "$(id -u):$(id -g)" .
+
       - name: Fix generated Dart imports
         run: dart fix --apply lib/src/api/ || true
 
