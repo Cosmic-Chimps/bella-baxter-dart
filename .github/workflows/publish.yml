@@ -65,8 +65,13 @@ jobs:
       - name: Fix ownership after Docker (Docker runs as root, files must be runner-owned)
         run: sudo chown -R "$(id -u):$(id -g)" .
 
-      - name: Fix generated Dart imports
-        run: dart fix --apply lib/src/api/ || true
+      - name: Fix generated Dart imports and Dart 3 mixin syntax
+        run: |
+          dart fix --apply lib/src/api/ || true
+          # built_value_generator <8.6 generates 'abstract class _$XxxMixin' which Dart 3
+          # no longer accepts as a mixin. Ensure all generated .g.dart files use 'mixin'.
+          find lib/src/model -name '*.g.dart' -exec \
+            sed -i 's/^abstract class \(_\$[A-Za-z]*Mixin\) {$/mixin \1 {/' {} +
 
       - name: Install dependencies
         run: dart pub get
