@@ -46,7 +46,8 @@ abstract class SecretCache {
 /// - [accessToken]: Bearer JWT auth (injected by `bella exec` in SSO/OAuth mode).
 class BellaClientOptions {
   /// The base URL of the Bella Baxter API.
-  /// Example: `'https://api.example.com'`
+  /// Defaults to `'https://api.bella-baxter.io'` (hosted cloud).
+  /// Override for self-hosted deployments.
   final String baseUrl;
 
   /// API key in `bax-<keyId>-<signingSecretHex>` format.
@@ -105,7 +106,7 @@ class BellaClientOptions {
   // which is not a const-compatible type.  All existing callers that omit
   // [privateKey] and [onWrappedDekReceived] are unaffected.
   BellaClientOptions({
-    required this.baseUrl,
+    this.baseUrl = 'https://api.bella-baxter.io',
     this.apiKey,
     this.accessToken,
     this.appClient,
