@@ -38,8 +38,8 @@ E2eeKeyPair generateE2eeKeyPair() {
     ..init(ParametersWithRandom(ECKeyGeneratorParameters(_domain), rng));
   final kp = gen.generateKeyPair();
   return AsymmetricKeyPair<ECPublicKey, ECPrivateKey>(
-    kp.publicKey as ECPublicKey,
-    kp.privateKey as ECPrivateKey,
+    kp.publicKey,
+    kp.privateKey,
   );
 }
 
