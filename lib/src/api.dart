@@ -73,6 +73,15 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_leases_list_leases_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_leases_revoke_leases_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_list_environments_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_configure_pki_ca_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_create_pki_role_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_delete_pki_role_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_get_pki_ca_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_issue_pki_certificate_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_list_pki_certificates_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_list_pki_roles_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_revoke_pki_certificate_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_tidy_pki_certs_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_remove_provider_from_environment_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_remove_user_from_environment_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_create_secret_api.dart';
@@ -652,6 +661,60 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsListEnvironmentsApi getBellaBaxterFeaturesProjectsEnvironmentsListEnvironmentsApi() {
     return BellaBaxterFeaturesProjectsEnvironmentsListEnvironmentsApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiConfigurePkiCaApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiConfigurePkiCaApi getBellaBaxterFeaturesProjectsEnvironmentsPkiConfigurePkiCaApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiConfigurePkiCaApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiCreatePkiRoleApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiCreatePkiRoleApi getBellaBaxterFeaturesProjectsEnvironmentsPkiCreatePkiRoleApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiCreatePkiRoleApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiDeletePkiRoleApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiDeletePkiRoleApi getBellaBaxterFeaturesProjectsEnvironmentsPkiDeletePkiRoleApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiDeletePkiRoleApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiGetPkiCaApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiGetPkiCaApi getBellaBaxterFeaturesProjectsEnvironmentsPkiGetPkiCaApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiGetPkiCaApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiIssuePkiCertificateApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiIssuePkiCertificateApi getBellaBaxterFeaturesProjectsEnvironmentsPkiIssuePkiCertificateApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiIssuePkiCertificateApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiListPkiCertificatesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiListPkiCertificatesApi getBellaBaxterFeaturesProjectsEnvironmentsPkiListPkiCertificatesApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiListPkiCertificatesApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiListPkiRolesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiListPkiRolesApi getBellaBaxterFeaturesProjectsEnvironmentsPkiListPkiRolesApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiListPkiRolesApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiRevokePkiCertificateApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiRevokePkiCertificateApi getBellaBaxterFeaturesProjectsEnvironmentsPkiRevokePkiCertificateApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiRevokePkiCertificateApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiTidyPkiCertsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiTidyPkiCertsApi getBellaBaxterFeaturesProjectsEnvironmentsPkiTidyPkiCertsApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiTidyPkiCertsApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsEnvironmentsRemoveProviderFromEnvironmentApi instance, base route and serializer can be overridden by a given but be careful,
