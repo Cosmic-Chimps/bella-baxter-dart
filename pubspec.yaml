@@ -1,5 +1,5 @@
 name: bella_baxter
-version: 0.1.1-preview.73
+version: 0.1.1-preview.74
 description: >-
   Official Dart SDK for Bella Baxter secret management.
   Pull secrets from Vault, AWS, Azure, and GCP via a single unified API.
