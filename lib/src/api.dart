@@ -51,6 +51,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_notifications_list_te
 import 'package:bella_baxter/src/api/bella_baxter_features_notifications_test_notification_channel_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_notifications_toggle_notification_channel_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_notifications_update_notification_channel_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_pki_list_pki_logs_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_assign_project_users_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_assign_providers_to_project_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_create_project_create_project_api.dart';
@@ -533,6 +534,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesNotificationsUpdateNotificationChannelApi getBellaBaxterFeaturesNotificationsUpdateNotificationChannelApi() {
     return BellaBaxterFeaturesNotificationsUpdateNotificationChannelApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesPkiListPkiLogsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesPkiListPkiLogsApi getBellaBaxterFeaturesPkiListPkiLogsApi() {
+    return BellaBaxterFeaturesPkiListPkiLogsApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsAssignProjectUsersApi instance, base route and serializer can be overridden by a given but be careful,
