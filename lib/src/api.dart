@@ -160,7 +160,6 @@ import 'package:bella_baxter/src/api/bella_baxter_features_providers_init_system
 import 'package:bella_baxter/src/api/bella_baxter_features_providers_list_providers_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_providers_search_providers_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_providers_update_provider_api.dart';
-import 'package:bella_baxter/src/api/bella_baxter_features_rotator_definitions_list_rotator_definitions_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_get_environment_security_report_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_get_project_security_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_get_tenant_security_summary_api.dart';
@@ -1188,12 +1187,6 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProvidersUpdateProviderApi getBellaBaxterFeaturesProvidersUpdateProviderApi() {
     return BellaBaxterFeaturesProvidersUpdateProviderApi(dio, serializers);
-  }
-
-  /// Get BellaBaxterFeaturesRotatorDefinitionsListRotatorDefinitionsApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  BellaBaxterFeaturesRotatorDefinitionsListRotatorDefinitionsApi getBellaBaxterFeaturesRotatorDefinitionsListRotatorDefinitionsApi() {
-    return BellaBaxterFeaturesRotatorDefinitionsListRotatorDefinitionsApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesSecurityIntelligenceGetEnvironmentSecurityReportApi instance, base route and serializer can be overridden by a given but be careful,
