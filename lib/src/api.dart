@@ -32,6 +32,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_auth_get_sso_hint_api
 import 'package:bella_baxter/src/api/bella_baxter_features_billing_create_billing_portal_session_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_billing_create_checkout_session_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_billing_stripe_webhook_handler_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_cert_rotation_list_cert_rotation_logs_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_dashboard_get_dashboard_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_events_get_sse_stream_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_groups_add_user_to_group_api.dart';
@@ -68,6 +69,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_get_environment_providers_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_get_environment_users_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_get_secret_drift_summary_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_get_spiffe_settings_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_groups_assign_group_to_environment_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_groups_get_environment_groups_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_groups_unassign_group_from_environment_api.dart';
@@ -97,6 +99,8 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_get_secrets_hash_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_get_secrets_manifest_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_import_secrets_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_inspect_secret_certificate_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_list_environment_certificates_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_preview_import_secrets_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_rotate_rotation_signing_secret_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_set_secret_rotation_policy_api.dart';
@@ -115,6 +119,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_delete_ssh_role_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_get_ssh_ca_public_key_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_list_ssh_roles_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_rotate_ssh_ca_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_sign_ssh_key_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_totp_delete_totp_key_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_totp_generate_totp_key_api.dart';
@@ -131,6 +136,18 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_update_environment_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_update_environment_user_role_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_update_lease_policy_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_update_spiffe_settings_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_attest_workload_identity_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_create_workload_identity_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_delete_workload_identity_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_exchange_svid_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_get_jwt_bundle_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_get_trust_bundle_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_get_workload_identity_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_issue_jwt_svid_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_list_workload_identities_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_update_workload_identity_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_workload_identity_leases_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_export_project_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_get_project_encryption_key_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_get_project_get_project_api.dart';
@@ -172,6 +189,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_shares_get_share_api.
 import 'package:bella_baxter/src/api/bella_baxter_features_shares_list_my_shares_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_shares_revoke_share_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_shares_unlock_share_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_spiffe_get_attestation_vocabulary_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_ssh_list_ssh_logs_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_super_admin_get_user_tenants_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_diagnostics_endpoint_api.dart';
@@ -191,6 +209,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_billing_s
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_sso_config_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_encryption_key_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_features_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_invite_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_usage_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_list_tenant_invites_api.dart';
@@ -230,6 +249,9 @@ import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_reactivate_w
 import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_rotate_webhook_secret_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_test_webhook_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_update_webhook_api.dart';
+import 'package:bella_baxter/src/api/cert_rotation_api.dart';
+import 'package:bella_baxter/src/api/internal_api.dart';
+import 'package:bella_baxter/src/api/providers_api.dart';
 
 class BellaBaxter {
   static const String basePath = r'http://localhost:5522';
@@ -421,6 +443,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesBillingStripeWebhookHandlerApi getBellaBaxterFeaturesBillingStripeWebhookHandlerApi() {
     return BellaBaxterFeaturesBillingStripeWebhookHandlerApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesCertRotationListCertRotationLogsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesCertRotationListCertRotationLogsApi getBellaBaxterFeaturesCertRotationListCertRotationLogsApi() {
+    return BellaBaxterFeaturesCertRotationListCertRotationLogsApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesDashboardGetDashboardApi instance, base route and serializer can be overridden by a given but be careful,
@@ -639,6 +667,12 @@ class BellaBaxter {
     return BellaBaxterFeaturesProjectsEnvironmentsGetSecretDriftSummaryApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsGetSpiffeSettingsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsGetSpiffeSettingsApi getBellaBaxterFeaturesProjectsEnvironmentsGetSpiffeSettingsApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsGetSpiffeSettingsApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesProjectsEnvironmentsGroupsAssignGroupToEnvironmentApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsGroupsAssignGroupToEnvironmentApi getBellaBaxterFeaturesProjectsEnvironmentsGroupsAssignGroupToEnvironmentApi() {
@@ -813,6 +847,18 @@ class BellaBaxter {
     return BellaBaxterFeaturesProjectsEnvironmentsSecretsImportSecretsApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsSecretsInspectSecretCertificateApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsSecretsInspectSecretCertificateApi getBellaBaxterFeaturesProjectsEnvironmentsSecretsInspectSecretCertificateApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsSecretsInspectSecretCertificateApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsSecretsListEnvironmentCertificatesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsSecretsListEnvironmentCertificatesApi getBellaBaxterFeaturesProjectsEnvironmentsSecretsListEnvironmentCertificatesApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsSecretsListEnvironmentCertificatesApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesProjectsEnvironmentsSecretsPreviewImportSecretsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsSecretsPreviewImportSecretsApi getBellaBaxterFeaturesProjectsEnvironmentsSecretsPreviewImportSecretsApi() {
@@ -921,6 +967,12 @@ class BellaBaxter {
     return BellaBaxterFeaturesProjectsEnvironmentsSshListSshRolesApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsSshRotateSshCaApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsSshRotateSshCaApi getBellaBaxterFeaturesProjectsEnvironmentsSshRotateSshCaApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsSshRotateSshCaApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesProjectsEnvironmentsSshSignSshKeyApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsSshSignSshKeyApi getBellaBaxterFeaturesProjectsEnvironmentsSshSignSshKeyApi() {
@@ -1015,6 +1067,78 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsUpdateLeasePolicyApi getBellaBaxterFeaturesProjectsEnvironmentsUpdateLeasePolicyApi() {
     return BellaBaxterFeaturesProjectsEnvironmentsUpdateLeasePolicyApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsUpdateSpiffeSettingsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsUpdateSpiffeSettingsApi getBellaBaxterFeaturesProjectsEnvironmentsUpdateSpiffeSettingsApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsUpdateSpiffeSettingsApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesAttestWorkloadIdentityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesAttestWorkloadIdentityApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesAttestWorkloadIdentityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesAttestWorkloadIdentityApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesCreateWorkloadIdentityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesCreateWorkloadIdentityApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesCreateWorkloadIdentityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesCreateWorkloadIdentityApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesDeleteWorkloadIdentityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesDeleteWorkloadIdentityApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesDeleteWorkloadIdentityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesDeleteWorkloadIdentityApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesExchangeSvidApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesExchangeSvidApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesExchangeSvidApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesExchangeSvidApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetJwtBundleApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetJwtBundleApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetJwtBundleApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetJwtBundleApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetTrustBundleApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetTrustBundleApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetTrustBundleApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetTrustBundleApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetWorkloadIdentityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetWorkloadIdentityApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetWorkloadIdentityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesGetWorkloadIdentityApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesIssueJwtSvidApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesIssueJwtSvidApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesIssueJwtSvidApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesIssueJwtSvidApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListWorkloadIdentitiesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListWorkloadIdentitiesApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListWorkloadIdentitiesApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListWorkloadIdentitiesApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesUpdateWorkloadIdentityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesUpdateWorkloadIdentityApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesUpdateWorkloadIdentityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesUpdateWorkloadIdentityApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesWorkloadIdentityLeasesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesWorkloadIdentityLeasesApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesWorkloadIdentityLeasesApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesWorkloadIdentityLeasesApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsExportProjectApi instance, base route and serializer can be overridden by a given but be careful,
@@ -1263,6 +1387,12 @@ class BellaBaxter {
     return BellaBaxterFeaturesSharesUnlockShareApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesSpiffeGetAttestationVocabularyApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesSpiffeGetAttestationVocabularyApi getBellaBaxterFeaturesSpiffeGetAttestationVocabularyApi() {
+    return BellaBaxterFeaturesSpiffeGetAttestationVocabularyApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesSshListSshLogsApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesSshListSshLogsApi getBellaBaxterFeaturesSshListSshLogsApi() {
@@ -1375,6 +1505,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsGetTenantEncryptionKeyApi getBellaBaxterFeaturesTenantsGetTenantEncryptionKeyApi() {
     return BellaBaxterFeaturesTenantsGetTenantEncryptionKeyApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesTenantsGetTenantFeaturesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesTenantsGetTenantFeaturesApi getBellaBaxterFeaturesTenantsGetTenantFeaturesApi() {
+    return BellaBaxterFeaturesTenantsGetTenantFeaturesApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesTenantsGetTenantInviteApi instance, base route and serializer can be overridden by a given but be careful,
@@ -1609,5 +1745,23 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesWebhooksUpdateWebhookApi getBellaBaxterFeaturesWebhooksUpdateWebhookApi() {
     return BellaBaxterFeaturesWebhooksUpdateWebhookApi(dio, serializers);
+  }
+
+  /// Get CertRotationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  CertRotationApi getCertRotationApi() {
+    return CertRotationApi(dio, serializers);
+  }
+
+  /// Get InternalApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  InternalApi getInternalApi() {
+    return InternalApi(dio, serializers);
+  }
+
+  /// Get ProvidersApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  ProvidersApi getProvidersApi() {
+    return ProvidersApi(dio, serializers);
   }
 }
