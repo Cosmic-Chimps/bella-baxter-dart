@@ -26,6 +26,16 @@ import 'package:bella_baxter/src/api/bella_baxter_features_api_keys_get_personal
 import 'package:bella_baxter/src/api/bella_baxter_features_api_keys_issue_environment_token_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_api_keys_toggle_api_key_status_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_api_keys_update_api_key_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_audit_stream_cancel_audit_stream_replay_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_audit_stream_create_audit_stream_destination_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_audit_stream_delete_audit_stream_destination_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_audit_stream_get_audit_stream_availability_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_audit_stream_get_audit_stream_destination_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_audit_stream_get_audit_stream_replay_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_audit_stream_list_audit_stream_deliveries_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_audit_stream_request_audit_stream_replay_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_audit_stream_test_audit_stream_destination_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_audit_stream_update_audit_stream_destination_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_auth_exchange_token_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_auth_get_auth_config_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_auth_get_sso_hint_api.dart';
@@ -43,6 +53,8 @@ import 'package:bella_baxter/src/api/bella_baxter_features_groups_get_group_memb
 import 'package:bella_baxter/src/api/bella_baxter_features_groups_list_groups_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_groups_remove_user_from_group_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_groups_update_group_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_mcp_list_mcp_connections_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_mcp_revoke_mcp_connection_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_notifications_create_notification_channel_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_notifications_delete_notification_channel_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_notifications_get_notification_channel_api.dart';
@@ -224,6 +236,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_tenant
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_reprovision_tenant_dek_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_request_sso_access_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_revoke_tenant_invite_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_tenants_set_tenant_self_service_feature_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_switch_tenant_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_tenant_access_endpoints_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_toggle_sso_enforcement_api.dart';
@@ -409,6 +422,66 @@ class BellaBaxter {
     return BellaBaxterFeaturesApiKeysUpdateApiKeyApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesAuditStreamCancelAuditStreamReplayApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesAuditStreamCancelAuditStreamReplayApi getBellaBaxterFeaturesAuditStreamCancelAuditStreamReplayApi() {
+    return BellaBaxterFeaturesAuditStreamCancelAuditStreamReplayApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesAuditStreamCreateAuditStreamDestinationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesAuditStreamCreateAuditStreamDestinationApi getBellaBaxterFeaturesAuditStreamCreateAuditStreamDestinationApi() {
+    return BellaBaxterFeaturesAuditStreamCreateAuditStreamDestinationApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesAuditStreamDeleteAuditStreamDestinationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesAuditStreamDeleteAuditStreamDestinationApi getBellaBaxterFeaturesAuditStreamDeleteAuditStreamDestinationApi() {
+    return BellaBaxterFeaturesAuditStreamDeleteAuditStreamDestinationApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesAuditStreamGetAuditStreamAvailabilityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesAuditStreamGetAuditStreamAvailabilityApi getBellaBaxterFeaturesAuditStreamGetAuditStreamAvailabilityApi() {
+    return BellaBaxterFeaturesAuditStreamGetAuditStreamAvailabilityApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesAuditStreamGetAuditStreamDestinationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesAuditStreamGetAuditStreamDestinationApi getBellaBaxterFeaturesAuditStreamGetAuditStreamDestinationApi() {
+    return BellaBaxterFeaturesAuditStreamGetAuditStreamDestinationApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesAuditStreamGetAuditStreamReplayApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesAuditStreamGetAuditStreamReplayApi getBellaBaxterFeaturesAuditStreamGetAuditStreamReplayApi() {
+    return BellaBaxterFeaturesAuditStreamGetAuditStreamReplayApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesAuditStreamListAuditStreamDeliveriesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesAuditStreamListAuditStreamDeliveriesApi getBellaBaxterFeaturesAuditStreamListAuditStreamDeliveriesApi() {
+    return BellaBaxterFeaturesAuditStreamListAuditStreamDeliveriesApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesAuditStreamRequestAuditStreamReplayApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesAuditStreamRequestAuditStreamReplayApi getBellaBaxterFeaturesAuditStreamRequestAuditStreamReplayApi() {
+    return BellaBaxterFeaturesAuditStreamRequestAuditStreamReplayApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesAuditStreamTestAuditStreamDestinationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesAuditStreamTestAuditStreamDestinationApi getBellaBaxterFeaturesAuditStreamTestAuditStreamDestinationApi() {
+    return BellaBaxterFeaturesAuditStreamTestAuditStreamDestinationApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesAuditStreamUpdateAuditStreamDestinationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesAuditStreamUpdateAuditStreamDestinationApi getBellaBaxterFeaturesAuditStreamUpdateAuditStreamDestinationApi() {
+    return BellaBaxterFeaturesAuditStreamUpdateAuditStreamDestinationApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesAuthExchangeTokenApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesAuthExchangeTokenApi getBellaBaxterFeaturesAuthExchangeTokenApi() {
@@ -509,6 +582,18 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesGroupsUpdateGroupApi getBellaBaxterFeaturesGroupsUpdateGroupApi() {
     return BellaBaxterFeaturesGroupsUpdateGroupApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesMcpListMcpConnectionsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesMcpListMcpConnectionsApi getBellaBaxterFeaturesMcpListMcpConnectionsApi() {
+    return BellaBaxterFeaturesMcpListMcpConnectionsApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesMcpRevokeMcpConnectionApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesMcpRevokeMcpConnectionApi getBellaBaxterFeaturesMcpRevokeMcpConnectionApi() {
+    return BellaBaxterFeaturesMcpRevokeMcpConnectionApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesNotificationsCreateNotificationChannelApi instance, base route and serializer can be overridden by a given but be careful,
@@ -1595,6 +1680,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsRevokeTenantInviteApi getBellaBaxterFeaturesTenantsRevokeTenantInviteApi() {
     return BellaBaxterFeaturesTenantsRevokeTenantInviteApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesTenantsSetTenantSelfServiceFeatureApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesTenantsSetTenantSelfServiceFeatureApi getBellaBaxterFeaturesTenantsSetTenantSelfServiceFeatureApi() {
+    return BellaBaxterFeaturesTenantsSetTenantSelfServiceFeatureApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesTenantsSwitchTenantApi instance, base route and serializer can be overridden by a given but be careful,
