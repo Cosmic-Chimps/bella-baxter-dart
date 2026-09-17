@@ -88,9 +88,11 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_leases_list_leases_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_leases_revoke_leases_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_list_environments_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_adopt_pki_authority_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_configure_pki_ca_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_create_pki_role_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_delete_pki_role_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_get_pki_authority_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_get_pki_ca_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_issue_pki_certificate_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_list_pki_certificates_api.dart';
@@ -127,10 +129,13 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_versions_list_secret_versions_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_versions_rollback_secret_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_versions_undelete_secret_version_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_adopt_ssh_authority_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_configure_ssh_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_create_ssh_role_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_delete_ssh_role_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_get_ssh_authority_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_get_ssh_ca_public_key_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_get_ssh_deploy_authority_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_list_ssh_roles_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_rotate_ssh_ca_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_ssh_sign_ssh_key_api.dart';
@@ -800,6 +805,12 @@ class BellaBaxter {
     return BellaBaxterFeaturesProjectsEnvironmentsListEnvironmentsApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiAdoptPkiAuthorityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiAdoptPkiAuthorityApi getBellaBaxterFeaturesProjectsEnvironmentsPkiAdoptPkiAuthorityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiAdoptPkiAuthorityApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiConfigurePkiCaApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsPkiConfigurePkiCaApi getBellaBaxterFeaturesProjectsEnvironmentsPkiConfigurePkiCaApi() {
@@ -816,6 +827,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsPkiDeletePkiRoleApi getBellaBaxterFeaturesProjectsEnvironmentsPkiDeletePkiRoleApi() {
     return BellaBaxterFeaturesProjectsEnvironmentsPkiDeletePkiRoleApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiGetPkiAuthorityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsPkiGetPkiAuthorityApi getBellaBaxterFeaturesProjectsEnvironmentsPkiGetPkiAuthorityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsPkiGetPkiAuthorityApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiGetPkiCaApi instance, base route and serializer can be overridden by a given but be careful,
@@ -1034,6 +1051,12 @@ class BellaBaxter {
     return BellaBaxterFeaturesProjectsEnvironmentsSecretsVersionsUndeleteSecretVersionApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsSshAdoptSshAuthorityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsSshAdoptSshAuthorityApi getBellaBaxterFeaturesProjectsEnvironmentsSshAdoptSshAuthorityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsSshAdoptSshAuthorityApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesProjectsEnvironmentsSshConfigureSshApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsSshConfigureSshApi getBellaBaxterFeaturesProjectsEnvironmentsSshConfigureSshApi() {
@@ -1052,10 +1075,22 @@ class BellaBaxter {
     return BellaBaxterFeaturesProjectsEnvironmentsSshDeleteSshRoleApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsSshGetSshAuthorityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsSshGetSshAuthorityApi getBellaBaxterFeaturesProjectsEnvironmentsSshGetSshAuthorityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsSshGetSshAuthorityApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesProjectsEnvironmentsSshGetSshCaPublicKeyApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsSshGetSshCaPublicKeyApi getBellaBaxterFeaturesProjectsEnvironmentsSshGetSshCaPublicKeyApi() {
     return BellaBaxterFeaturesProjectsEnvironmentsSshGetSshCaPublicKeyApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsSshGetSshDeployAuthorityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsSshGetSshDeployAuthorityApi getBellaBaxterFeaturesProjectsEnvironmentsSshGetSshDeployAuthorityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsSshGetSshDeployAuthorityApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsEnvironmentsSshListSshRolesApi instance, base route and serializer can be overridden by a given but be careful,
