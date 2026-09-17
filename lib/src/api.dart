@@ -111,6 +111,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_get_environment_secrets_version_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_get_secret_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_get_secret_metadata_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_get_secret_rotation_policy_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_get_secrets_by_provider_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_get_secrets_hash_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_get_secrets_manifest_api.dart';
@@ -942,6 +943,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsSecretsGetSecretMetadataApi getBellaBaxterFeaturesProjectsEnvironmentsSecretsGetSecretMetadataApi() {
     return BellaBaxterFeaturesProjectsEnvironmentsSecretsGetSecretMetadataApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsSecretsGetSecretRotationPolicyApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsSecretsGetSecretRotationPolicyApi getBellaBaxterFeaturesProjectsEnvironmentsSecretsGetSecretRotationPolicyApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsSecretsGetSecretRotationPolicyApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsEnvironmentsSecretsGetSecretsByProviderApi instance, base route and serializer can be overridden by a given but be careful,
