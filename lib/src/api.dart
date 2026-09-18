@@ -261,6 +261,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_users_deactivate_user
 import 'package:bella_baxter/src/api/bella_baxter_features_users_get_current_user_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_users_get_user_by_id_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_users_handshake_handshake_endpoint_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_users_preview_user_deactivation_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_users_reactivate_user_account_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_users_update_current_user_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_create_webhook_api.dart';
@@ -1844,6 +1845,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesUsersHandshakeHandshakeEndpointApi getBellaBaxterFeaturesUsersHandshakeHandshakeEndpointApi() {
     return BellaBaxterFeaturesUsersHandshakeHandshakeEndpointApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesUsersPreviewUserDeactivationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesUsersPreviewUserDeactivationApi getBellaBaxterFeaturesUsersPreviewUserDeactivationApi() {
+    return BellaBaxterFeaturesUsersPreviewUserDeactivationApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesUsersReactivateUserAccountApi instance, base route and serializer can be overridden by a given but be careful,
