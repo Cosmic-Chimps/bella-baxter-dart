@@ -14,6 +14,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_admin_change_admin_pa
 import 'package:bella_baxter/src/api/bella_baxter_features_admin_create_admin_user_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_admin_deactivate_user_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_admin_get_project_roles_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_api_keys_attach_api_key_device_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_api_keys_create_api_key_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_api_keys_create_personal_api_key_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_api_keys_create_tenant_admin_api_key_api.dart';
@@ -361,6 +362,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesAdminGetProjectRolesApi getBellaBaxterFeaturesAdminGetProjectRolesApi() {
     return BellaBaxterFeaturesAdminGetProjectRolesApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesApiKeysAttachApiKeyDeviceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesApiKeysAttachApiKeyDeviceApi getBellaBaxterFeaturesApiKeysAttachApiKeyDeviceApi() {
+    return BellaBaxterFeaturesApiKeysAttachApiKeyDeviceApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesApiKeysCreateApiKeyApi instance, base route and serializer can be overridden by a given but be careful,
