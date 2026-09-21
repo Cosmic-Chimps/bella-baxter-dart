@@ -43,7 +43,7 @@ abstract class SecretCache {
 ///
 /// Provide exactly one of [apiKey] or [accessToken]:
 /// - [apiKey]: HMAC-signed auth (`bax-<keyId>-<signingSecret>` format).
-/// - [accessToken]: Bearer JWT auth (injected by `bella exec` in SSO/OAuth mode).
+/// - [accessToken]: Bearer JWT auth (injected by `bella sdk run` in SSO/OAuth mode).
 class BellaClientOptions {
   /// The base URL of the Bella Baxter API.
   /// Defaults to `'https://api.bella-baxter.io'` (hosted cloud).
@@ -55,7 +55,7 @@ class BellaClientOptions {
   final String? apiKey;
 
   /// Short-lived JWT access token.
-  /// Injected as `BELLA_BAXTER_ACCESS_TOKEN` by `bella exec` in SSO mode.
+  /// Injected as `BELLA_BAXTER_ACCESS_TOKEN` by `bella sdk run` in SSO mode.
   /// Mutually exclusive with [apiKey].
   final String? accessToken;
 
@@ -227,7 +227,7 @@ class _BellaBearerInterceptor extends Interceptor {
 
 /// High-level Bella Baxter client.
 ///
-/// **API key mode** (most common — `bella exec` with a stored key):
+/// **API key mode** (most common — `bella sdk run` with a stored key):
 /// ```dart
 /// final client = BellaClient(BellaClientOptions(
 ///   baseUrl: Platform.environment['BELLA_BAXTER_URL']!,
@@ -235,7 +235,7 @@ class _BellaBearerInterceptor extends Interceptor {
 /// ));
 /// ```
 ///
-/// **JWT mode** (`bella exec` in SSO / OAuth mode):
+/// **JWT mode** (`bella sdk run` in SSO / OAuth mode):
 /// ```dart
 /// final client = BellaClient(BellaClientOptions(
 ///   baseUrl:     Platform.environment['BELLA_BAXTER_URL']!,
@@ -289,7 +289,7 @@ class BellaClient {
     _api = BellaBaxter(dio: dio);
   }
 
-  /// Creates a [BellaClient] from environment variables injected by `bella exec`.
+  /// Creates a [BellaClient] from environment variables injected by `bella sdk run`.
   ///
   /// Reads (in priority order):
   /// - `BELLA_BAXTER_URL`  / `BELLA_API_URL` (deprecated alias)
@@ -303,7 +303,7 @@ class BellaClient {
     if (baseUrl == null || baseUrl.isEmpty) {
       throw StateError(
         'BELLA_BAXTER_URL is not set.\n'
-        '  Run your app via: bella exec -- dart main.dart',
+        '  Run your app via: bella sdk run -- dart main.dart',
       );
     }
 
@@ -335,7 +335,7 @@ class BellaClient {
     throw StateError(
       'No Bella auth credentials found.\n'
       '  Set BELLA_BAXTER_API_KEY or BELLA_BAXTER_ACCESS_TOKEN,\n'
-      '  or run your app via: bella exec -- dart main.dart',
+      '  or run your app via: bella sdk run -- dart main.dart',
     );
   }
 

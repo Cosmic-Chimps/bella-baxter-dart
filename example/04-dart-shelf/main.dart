@@ -9,8 +9,8 @@ import 'package:shelf/shelf_io.dart' as io;
 /// Pattern: pull secrets once at startup, pass them into your handlers.
 /// The project + environment are auto-discovered from the API key.
 ///
-/// Run with bella exec so credentials are injected automatically:
-///   bella exec -- dart main.dart
+/// Run with bella sdk run so credentials are injected automatically:
+///   bella sdk run -- dart main.dart
 void main() async {
   final port = int.tryParse(Platform.environment['PORT'] ?? '9090') ?? 9090;
 

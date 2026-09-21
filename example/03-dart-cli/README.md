@@ -1,6 +1,6 @@
 # Sample 03 — Dart CLI (env-var mode + SDK mode)
 
-**Pattern:** Two modes in one sample — `bella run` for simple env-var injection, or `bella exec` for SDK-fetched secrets with typed access.
+**Pattern:** Two modes in one sample — `bella run` for simple env-var injection, or `bella sdk run` for SDK-fetched secrets with typed access.
 
 ## Modes
 
@@ -9,17 +9,17 @@
 `bella run` fetches all secrets and injects them as env vars into the subprocess. `AwesomeSecrets()` reads from `Platform.environment`.
 
 ```bash
-bella login                          # or bella login --api-key bax-...
+bella login                          # or bella login
 bella run -- dart run main.dart
 ```
 
-### SDK mode (`bella exec`)
+### SDK mode (`bella sdk run`)
 
-`bella exec` injects only Bella credentials (API key / OAuth token). The app itself fetches secrets via `BellaClient.pullSecretsAs(AwesomeSecrets.fromMap)`.
+`bella sdk run` injects only Bella credentials (API key / OAuth token). The app itself fetches secrets via `BellaClient.pullSecretsAs(AwesomeSecrets.fromMap)`.
 
 ```bash
-bella login                          # or bella login --api-key bax-...
-bella exec -- dart run main.dart sdk
+bella login                          # or bella login
+bella sdk run -- dart run main.dart sdk
 ```
 
 ## Typed secret class

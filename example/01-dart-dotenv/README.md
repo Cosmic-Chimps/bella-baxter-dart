@@ -19,7 +19,7 @@ bella secrets get -o .env    # .bella file in this directory sets project/env co
 dart run main.dart
 
 # CI/CD (API key, billed per call):
-bella login --api-key bax-xxxxxx    # .bella auto-created from key
+bella login    # .bella auto-created from key
 bella secrets get -o .env
 dart run main.dart
 ```

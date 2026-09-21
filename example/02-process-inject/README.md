@@ -19,7 +19,7 @@ bella login                          # opens browser; .bella file in this dir se
 bella run -- dart run main.dart
 
 # CI/CD (API key, billed per call):
-bella login --api-key bax-xxxxxx    # .bella auto-created with project + env
+bella login    # .bella auto-created with project + env
 bella run -- dart run main.dart
 ```
 

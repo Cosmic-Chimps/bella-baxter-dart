@@ -11,8 +11,8 @@ import 'awesome_secrets.dart';
 ///     bella run -- dart main.dart
 ///     → AwesomeSecrets() reads from Platform.environment
 ///
-///   Mode B — SDK (bella exec only injects credentials, app fetches secrets):
-///     bella exec -- dart main.dart sdk
+///   Mode B — SDK (bella sdk run only injects credentials, app fetches secrets):
+///     bella sdk run -- dart main.dart sdk
 ///     → client.pullSecretsAs(AwesomeSecrets.fromMap) fetches & types in one call
 ///
 /// Generate / update the typed class:
@@ -47,13 +47,13 @@ void _runEnvMode() {
 }
 
 // ---------------------------------------------------------------------------
-// Mode B: bella exec injects ONLY credentials (BELLA_BAXTER_API_KEY + URL).
+// Mode B: bella sdk run injects ONLY credentials (BELLA_BAXTER_API_KEY + URL).
 //   The app fetches its own secrets at startup via pullSecretsAs.
-//   bella exec -- dart main.dart sdk
+//   bella sdk run -- dart main.dart sdk
 // ---------------------------------------------------------------------------
 Future<void> _runSdkMode() async {
   stdout.writeln('=== Typed secrets — SDK mode ===');
-  stdout.writeln('Run with: bella exec -- dart main.dart sdk\n');
+  stdout.writeln('Run with: bella sdk run -- dart main.dart sdk\n');
 
   final client = BellaClient.fromEnv();
   stdout.writeln('Pulling secrets from Bella...');

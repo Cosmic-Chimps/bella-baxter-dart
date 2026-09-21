@@ -27,7 +27,7 @@ dependencies:
 import 'package:bella_baxter/bella_client.dart';
 
 void main() async {
-  // Auto-detect from environment (works with bella exec)
+  // Auto-detect from environment (works with bella sdk run)
   final client = BellaClient.fromEnv();
   final secrets = await client.pullSecrets();
 
@@ -35,7 +35,7 @@ void main() async {
 }
 ```
 
-### Environment variables (set by `bella exec`)
+### Environment variables (set by `bella sdk run`)
 
 | Variable | Description |
 |----------|-------------|
@@ -116,7 +116,7 @@ final client = BellaClient(BellaClientOptions(
 See [`example/`](example/) for working samples:
 
 - `01-dart-dotenv` — load secrets from `.env` file
-- `02-process-inject` — `bella exec` process injection
+- `02-process-inject` — `bella sdk run` process injection
 - `03-dart-cli` — CLI app (env-var mode + SDK mode)
 - `04-dart-shelf` — HTTP server with secrets
 - `05-flutter-app` — Flutter app with `SecretCache`

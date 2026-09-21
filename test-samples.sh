@@ -200,10 +200,10 @@ popd >/dev/null
 
 # ── 03: dart-cli (SDK mode) ────────────────────────────────────────────────────
 
-print_header "Sample 03b — dart-cli SDK mode (bella exec -- dart run main.dart sdk)"
+print_header "Sample 03b — dart-cli SDK mode (bella sdk run -- dart run main.dart sdk)"
 pushd "$SAMPLES_DIR/03-dart-cli" >/dev/null
 
-output=$(BELLA_BAXTER_URL="$BELLA_BAXTER_URL" bella exec --app dart-03-dart-cli -- dart run main.dart sdk 2>&1)
+output=$(BELLA_BAXTER_URL="$BELLA_BAXTER_URL" bella sdk run --app dart-03-dart-cli -- dart run main.dart sdk 2>&1)
 echo "--- output ---"
 echo "$output"
 echo "--------------"
@@ -213,12 +213,12 @@ popd >/dev/null
 
 # ── 04: dart-shelf (server) ────────────────────────────────────────────────────
 
-print_header "Sample 04 — dart-shelf (bella exec -- dart run main.dart)"
+print_header "Sample 04 — dart-shelf (bella sdk run -- dart run main.dart)"
 SERVER_PORT=9090
 cleanup_port $SERVER_PORT
 pushd "$SAMPLES_DIR/04-dart-shelf" >/dev/null
 
-BELLA_BAXTER_URL="$BELLA_BAXTER_URL" bella exec --app dart-04-dart-shelf -- dart run main.dart &
+BELLA_BAXTER_URL="$BELLA_BAXTER_URL" bella sdk run --app dart-04-dart-shelf -- dart run main.dart &
 SERVER_PID=$!
 echo "  Started server PID=$SERVER_PID on :$SERVER_PORT"
 
@@ -252,9 +252,9 @@ popd >/dev/null
 
 print_header "Sample 05 — flutter-app (SKIPPED)"
 echo "  ⚠ Skipped: Flutter uses dart-define compile-time constants."
-echo "    bella exec cannot inject secrets — they must be compiled in."
+echo "    bella sdk run cannot inject secrets — they must be compiled in."
 echo "    Run manually: flutter run --dart-define-from-file=secrets.json"
-RESULTS+=("SKIP — 05-flutter-app (compile-time dart-defines, cannot test with bella exec)")
+RESULTS+=("SKIP — 05-flutter-app (compile-time dart-defines, cannot test with bella sdk run)")
 
 # ── Summary ────────────────────────────────────────────────────────────────────
 
