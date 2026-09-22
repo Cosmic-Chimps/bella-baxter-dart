@@ -104,6 +104,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_remove_provider_from_environment_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_remove_user_from_environment_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_restore_environment_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_apply_certificate_import_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_create_secret_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_delete_secret_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_export_environment_secrets_api.dart';
@@ -119,6 +120,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_import_secrets_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_inspect_secret_certificate_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_list_environment_certificates_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_plan_certificate_import_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_preview_import_secrets_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_rotate_rotation_signing_secret_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_secrets_set_secret_rotation_policy_api.dart';
@@ -247,6 +249,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_tenants_recover_tenan
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_register_tenant_encryption_key_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_sso_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_tenant_user_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_tenants_replace_tenant_invite_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_reprovision_tenant_dek_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_request_sso_access_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_revoke_tenant_invite_api.dart';
@@ -278,7 +281,6 @@ import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_rotate_webho
 import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_test_webhook_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_update_webhook_api.dart';
 import 'package:bella_baxter/src/api/cert_rotation_api.dart';
-import 'package:bella_baxter/src/api/internal_api.dart';
 import 'package:bella_baxter/src/api/providers_api.dart';
 
 class BellaBaxter {
@@ -905,6 +907,12 @@ class BellaBaxter {
     return BellaBaxterFeaturesProjectsEnvironmentsRestoreEnvironmentApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsSecretsApplyCertificateImportApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsSecretsApplyCertificateImportApi getBellaBaxterFeaturesProjectsEnvironmentsSecretsApplyCertificateImportApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsSecretsApplyCertificateImportApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesProjectsEnvironmentsSecretsCreateSecretApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsSecretsCreateSecretApi getBellaBaxterFeaturesProjectsEnvironmentsSecretsCreateSecretApi() {
@@ -993,6 +1001,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsSecretsListEnvironmentCertificatesApi getBellaBaxterFeaturesProjectsEnvironmentsSecretsListEnvironmentCertificatesApi() {
     return BellaBaxterFeaturesProjectsEnvironmentsSecretsListEnvironmentCertificatesApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsSecretsPlanCertificateImportApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsSecretsPlanCertificateImportApi getBellaBaxterFeaturesProjectsEnvironmentsSecretsPlanCertificateImportApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsSecretsPlanCertificateImportApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsEnvironmentsSecretsPreviewImportSecretsApi instance, base route and serializer can be overridden by a given but be careful,
@@ -1763,6 +1777,12 @@ class BellaBaxter {
     return BellaBaxterFeaturesTenantsRemoveTenantUserApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesTenantsReplaceTenantInviteApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesTenantsReplaceTenantInviteApi getBellaBaxterFeaturesTenantsReplaceTenantInviteApi() {
+    return BellaBaxterFeaturesTenantsReplaceTenantInviteApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesTenantsReprovisionTenantDekApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsReprovisionTenantDekApi getBellaBaxterFeaturesTenantsReprovisionTenantDekApi() {
@@ -1947,12 +1967,6 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   CertRotationApi getCertRotationApi() {
     return CertRotationApi(dio, serializers);
-  }
-
-  /// Get InternalApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  InternalApi getInternalApi() {
-    return InternalApi(dio, serializers);
   }
 
   /// Get ProvidersApi instance, base route and serializer can be overridden by a given but be careful,
