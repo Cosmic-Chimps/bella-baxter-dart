@@ -251,6 +251,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_sso_ap
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_tenant_user_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_replace_tenant_invite_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_reprovision_tenant_dek_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_tenants_request_invite_address_verification_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_request_sso_access_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_revoke_tenant_invite_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_set_tenant_self_service_feature_api.dart';
@@ -1787,6 +1788,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsReprovisionTenantDekApi getBellaBaxterFeaturesTenantsReprovisionTenantDekApi() {
     return BellaBaxterFeaturesTenantsReprovisionTenantDekApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesTenantsRequestInviteAddressVerificationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesTenantsRequestInviteAddressVerificationApi getBellaBaxterFeaturesTenantsRequestInviteAddressVerificationApi() {
+    return BellaBaxterFeaturesTenantsRequestInviteAddressVerificationApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesTenantsRequestSsoAccessApi instance, base route and serializer can be overridden by a given but be careful,
