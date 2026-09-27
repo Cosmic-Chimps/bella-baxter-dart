@@ -83,9 +83,8 @@ class BellaClientOptions {
   /// generating a fresh ephemeral key per client instance.  The key is loaded
   /// via [e2eeKeyPairFromPkcs8].
   ///
-  /// Obtain a device key with: `bella auth setup`
-  /// (exports `~/.bella/device-key.pem`; strip PEM headers and base64-decode
-  /// to get the raw DER bytes).
+  /// Obtain a device key with: `bella auth setup`. To convert a PEM or base64
+  /// string (e.g. `BELLA_BAXTER_PRIVATE_KEY`) use [bellaPrivateKeyFromEnvValue].
   ///
   /// When null (default) an ephemeral P-256 key pair is generated automatically.
   final Uint8List? privateKey;
@@ -119,6 +118,41 @@ class BellaClientOptions {
           (apiKey != null) != (accessToken != null),
           'Provide exactly one of apiKey or accessToken.',
         );
+}
+
+// ── Device key (ZKE) ─────────────────────────────────────────────────────────
+
+/// Parses the value of `BELLA_BAXTER_PRIVATE_KEY` into PKCS#8 DER bytes.
+///
+/// Accepts a PKCS#8 PEM (what `bella sdk run` injects) or bare base64 PKCS#8
+/// DER: the `-----…-----` armour and all whitespace (including CRLF) are
+/// stripped before decoding, the same rule the JS, Java and .NET SDKs apply.
+///
+/// Returns `null` when [value] is null or blank — no device key is configured,
+/// and the client generates an ephemeral key as it always has.
+///
+/// Throws a [StateError] naming `BELLA_BAXTER_PRIVATE_KEY` when a key IS
+/// present but cannot be read as a P-256 private key. It never falls back to an
+/// ephemeral key in that case (#989): silently presenting a key nobody
+/// registered makes every read fail later with a 403 whose cause is invisible
+/// from inside the application.
+Uint8List? bellaPrivateKeyFromEnvValue(String? value) {
+  if (value == null || value.trim().isEmpty) return null;
+
+  final body = value.replaceAll(RegExp(r'-----[A-Z ]+-----|\s'), '');
+  try {
+    final der = base64Decode(body);
+    // Parse it now, so a bad key fails here rather than on the first request.
+    e2eeKeyPairFromPkcs8(der);
+    return der;
+  } catch (_) {
+    throw StateError(
+      'BELLA_BAXTER_PRIVATE_KEY is set but is not a readable PKCS#8 P-256 '
+      'private key (PEM or base64 DER expected). Refusing to continue with a '
+      'throwaway key instead of your device key.\n'
+      '  Unset it, or re-run: bella auth setup',
+    );
+  }
 }
 
 // ── Internal auth helpers ────────────────────────────────────────────────────
@@ -314,15 +348,8 @@ class BellaClient {
 
     // ZKE: auto-load device private key from BELLA_BAXTER_PRIVATE_KEY env var.
     // This var is injected by `bella sdk run` when the device has been set up via `bella auth setup`.
-    Uint8List? privateKey;
-    final privateKeyB64 = Platform.environment['BELLA_BAXTER_PRIVATE_KEY'];
-    if (privateKeyB64 != null && privateKeyB64.isNotEmpty) {
-      try {
-        privateKey = base64Decode(privateKeyB64);
-      } catch (_) {
-        // Invalid base64 — ignore and fall back to ephemeral key
-      }
-    }
+    final privateKey = bellaPrivateKeyFromEnvValue(
+        Platform.environment['BELLA_BAXTER_PRIVATE_KEY']);
 
     if (apiKey != null && apiKey.isNotEmpty) {
       return BellaClient(BellaClientOptions(baseUrl: baseUrl, apiKey: apiKey, appClient: appClient, privateKey: privateKey));

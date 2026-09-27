@@ -23,3 +23,4 @@ pubspec.yaml
 analysis_options.yaml
 lib/bella_client.dart
 lib/bella_baxter.dart
+test/private_key_env_test.dart

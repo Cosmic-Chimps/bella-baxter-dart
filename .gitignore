@@ -48,5 +48,7 @@ lib/src/
 !lib/src/e2ee.dart
 !lib/src/webhook_signature.dart
 doc/
-test/
+# openapi-generator writes one test per model into test/ — handwritten tests are tracked:
+test/*
+!test/private_key_env_test.dart
 .openapi-generator/
