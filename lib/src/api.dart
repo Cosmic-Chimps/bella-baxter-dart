@@ -169,7 +169,9 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_get_trust_bundle_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_get_workload_identity_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_issue_jwt_svid_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_list_node_bindings_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_list_workload_identities_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_release_node_binding_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_update_workload_identity_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_workload_identity_leases_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_export_project_api.dart';
@@ -1299,10 +1301,22 @@ class BellaBaxter {
     return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesIssueJwtSvidApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListNodeBindingsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListNodeBindingsApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListNodeBindingsApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListNodeBindingsApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListWorkloadIdentitiesApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListWorkloadIdentitiesApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListWorkloadIdentitiesApi() {
     return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesListWorkloadIdentitiesApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesReleaseNodeBindingApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesReleaseNodeBindingApi getBellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesReleaseNodeBindingApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesReleaseNodeBindingApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsEnvironmentsWorkloadIdentitiesUpdateWorkloadIdentityApi instance, base route and serializer can be overridden by a given but be careful,
