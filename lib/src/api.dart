@@ -77,6 +77,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_delete_environment_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_dynamic_credentials_generate_credentials_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_dynamic_credentials_list_credential_roles_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_get_audience_readiness_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_get_environment_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_get_environment_drift_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_get_environment_providers_api.dart';
@@ -744,6 +745,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsDynamicCredentialsListCredentialRolesApi getBellaBaxterFeaturesProjectsEnvironmentsDynamicCredentialsListCredentialRolesApi() {
     return BellaBaxterFeaturesProjectsEnvironmentsDynamicCredentialsListCredentialRolesApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsGetAudienceReadinessApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsGetAudienceReadinessApi getBellaBaxterFeaturesProjectsEnvironmentsGetAudienceReadinessApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsGetAudienceReadinessApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsEnvironmentsGetEnvironmentApi instance, base route and serializer can be overridden by a given but be careful,
