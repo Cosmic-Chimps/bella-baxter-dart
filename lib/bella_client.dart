@@ -366,6 +366,18 @@ class BellaClient {
     );
   }
 
+  // ── Generated client ──────────────────────────────────────────────────────
+
+  /// The generated client for the full Bella Baxter API (projects, providers, TOTP, …), on the same Dio
+  /// as this client: its auth and E2EE interceptors apply to every call made through it, so a secret
+  /// value read here (e.g. `getSecret`, `listSecrets`) presents the E2EE key and is decrypted
+  /// transparently, and a plaintext or undecryptable answer is refused with [E2EEResponseError] (#1162).
+  /// The other SDKs expose theirs the same way (Python `client`, Java/PHP `getClient()`, Ruby `client`).
+  ///
+  /// Five of the seven secret-value reads are declared as `E2EEncryptedPayload` in the OpenAPI document,
+  /// so their typed methods cannot represent the decrypted body; read those through `api.dio` instead.
+  BellaBaxter get api => _api;
+
   // ── Key context ───────────────────────────────────────────────────────────
 
   /// Calls `GET /api/v1/keys/me` to discover the project + environment this
@@ -528,13 +540,30 @@ class BellaClient {
   /// Returns a [Stream] that emits fresh secrets on [interval] (default: 5 min).
   ///
   /// The first value is emitted immediately. On each successful fetch the
-  /// result is written to the [SecretCache] (if configured). If a fetch fails
-  /// the last known good value is re-emitted — the stream never closes due to
-  /// connectivity loss. Cancel the subscription to stop polling.
+  /// result is written to the [SecretCache] (if configured). Cancel the
+  /// subscription to stop polling.
+  ///
+  /// **Failures are delivered, never swallowed (#1162).** When a poll fails,
+  /// the last known good value (in memory, or the cache seed) is re-emitted as
+  /// before — so the stream never closes on connectivity loss — and then the
+  /// failure itself is delivered as an **error event**. Every failure is
+  /// delivered: a lost connection or timeout ([DioException]), an expired or
+  /// revoked credential (the API's 401/403), and an [E2EEResponseError] when
+  /// the server answered in plaintext although this client presented its E2EE
+  /// key, or the envelope would not decrypt (unwrapped from Dio, so its `code`
+  /// is `e2ee-plaintext-response` / `e2ee-decryption-failed`).
+  ///
+  /// The error comes AFTER the re-emitted value, so it is the latest event: a
+  /// listener that clears its error state in `onData` (or a `StreamBuilder`)
+  /// still shows the failure until a later poll succeeds. Polling continues
+  /// after an error, but a listener subscribed with `cancelOnError: true` is
+  /// cancelled by the first one — pass an `onError` handler instead.
   ///
   /// ```dart
   /// client.watchSecrets().listen((secrets) {
   ///   setState(() => _dbUrl = secrets['DATABASE_URL']);
+  /// }, onError: (Object e) {
+  ///   setState(() => _error = e is E2EEResponseError ? e.code : '$e');
   /// });
   /// ```
   Stream<Map<String, String>> watchSecrets({
@@ -545,21 +574,31 @@ class BellaClient {
     // Seed from cache so first emission is instant even when offline.
     Map<String, String> last = await _tryReadCache() ?? {};
     while (true) {
+      Object? failure;
+      StackTrace? failureTrace;
       try {
         last = await pullSecrets(
           projectRef: projectRef,
           environmentSlug: environmentSlug,
           fallbackOnError: false, // cache write-through already done inside pullSecrets
         );
-      } catch (_) {
-        // Re-emit last known good (in-memory or from cache seed above).
+      } catch (e, st) {
+        // #1050 — surface a refused E2EE answer by itself, with its code, not Dio's wrapper around it.
+        failure = e is DioException && e.error is E2EEResponseError ? e.error : e;
+        failureTrace = st;
       }
+      // Re-emit last known good (in-memory or from the cache seed above) on failure, as documented.
       yield last;
+      if (failure != null) {
+        // An error event does not close an async* stream: polling carries on after it.
+        yield* Stream<Map<String, String>>.error(failure, failureTrace);
+      }
       await Future<void>.delayed(interval);
     }
   }
 
-  /// Like [watchSecrets] but maps each emission through [fromMap].
+  /// Like [watchSecrets] but maps each emission through [fromMap]. Failed polls arrive as error events,
+  /// exactly as in [watchSecrets].
   ///
   /// ```dart
   /// client.watchSecretsAs(AppSecrets.fromMap).listen((s) {

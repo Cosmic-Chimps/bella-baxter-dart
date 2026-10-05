@@ -25,3 +25,9 @@ lib/bella_client.dart
 lib/bella_baxter.dart
 test/private_key_env_test.dart
 test/e2ee_refusal_test.dart
+test/e2ee_envelope_helper.dart
+test/watch_secrets_errors_test.dart
+test/presentation_every_read_test.dart
+test/barrel_complete_test.dart
+tool/generate_barrel.dart
+tool/generate_client.sh

@@ -124,8 +124,19 @@ String e2eePublicKeyToSpkiB64(E2eeKeyPair keyPair) {
 /// Crypto: ECDH-P256 → HKDF-SHA256(salt=32 zeros, info="bella-e2ee-v1")
 ///         → AES-256-GCM decrypt.
 ///
-/// Returns the decrypted response as a plain [Map<String,dynamic>].
+/// Returns the decrypted response as a plain [Map<String,dynamic>]; throws when the plaintext is not a
+/// JSON object. [decryptE2eePayloadBytes] returns the plaintext of any envelope-required read as it is.
 Map<String, dynamic> decryptE2eePayload(
+  E2eeKeyPair clientKeyPair,
+  Map<String, dynamic> payload,
+) =>
+    json.decode(utf8.decode(decryptE2eePayloadBytes(clientKeyPair, payload)))
+        as Map<String, dynamic>;
+
+/// Decrypts an E2EE envelope and returns the plaintext bytes exactly as the server encrypted them: the
+/// JSON body the read would have had without a key (#1162). Not every envelope-required read is a JSON
+/// object — `listSecrets` is an array — so nothing here assumes a shape.
+Uint8List decryptE2eePayloadBytes(
   E2eeKeyPair clientKeyPair,
   Map<String, dynamic> payload,
 ) {
@@ -173,9 +184,7 @@ Map<String, dynamic> decryptE2eePayload(
         Uint8List(0), // no AAD
       ),
     );
-  final plaintext = gcm.process(combined);
-
-  return json.decode(utf8.decode(plaintext)) as Map<String, dynamic>;
+  return gcm.process(combined);
 }
 
 // ── Private utilities ────────────────────────────────────────────────────────
@@ -339,14 +348,21 @@ class BellaE2eeInterceptor extends Interceptor {
 
   /// Returns `true` when [path] is the all-environment-secrets endpoint.
   /// Matches `/environments/{slug}/secrets` (no trailing path segments).
+  ///
+  /// No longer decides presentation (#1162): the key is presented on every envelope-required read, see
+  /// [requiresEnvelope]. Kept for callers that used it.
   static bool isSecretsEndpoint(String path) =>
       RegExp(r'/environments/[^/]+/secrets$').hasMatch(path);
 
   // ── Interceptor overrides ─────────────────────────────────────────────────
 
+  /// #1162 (SDK_CONTRACT.md, "Rule: the key is presented on every envelope-required read") — the key is
+  /// presented on EVERY read that carries secret values, decided here by [requiresEnvelope], never per
+  /// public method. It used to be presented on getAllEnvironmentSecrets only, so `getSecret`,
+  /// `getSecretVersion`, `listSecrets`, both exports and the global list reached the caller over TLS alone.
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    if (options.method == 'GET' && isSecretsEndpoint(options.uri.path)) {
+    if (requiresEnvelope(options.method, options.uri.path)) {
       _ensureKeyPair();
       options.headers['X-E2E-Public-Key'] = _publicKeySpkiB64;
       options.extra[keyPresentedExtra] = true;
@@ -364,14 +380,21 @@ class BellaE2eeInterceptor extends Interceptor {
     final path = request.uri.path;
     final presented = request.extra[keyPresentedExtra] == true;
     final status = response.statusCode ?? 0;
-    final isEnvelope = data is Map && data['encrypted'] == true;
+    final envelope = _envelopeOf(data);
 
-    if (_keyPair != null && isEnvelope) {
+    if (_keyPair != null && envelope != null) {
       // #1050 — an envelope that will not decrypt (tampered, wrong key, malformed) is REFUSED. It used to
       // be passed through raw, so the caller could read the envelope's fields as its "secrets".
       try {
-        response.data =
-            decryptE2eePayload(_keyPair!, data.cast<String, dynamic>());
+        // #1162 — the plaintext is handed on unchanged, in the representation the request asked for
+        // (decoded JSON of whatever shape, a String, or bytes): an array (listSecrets) or a single item
+        // (getSecret) is as valid a plaintext as AllEnvironmentSecretsResponse.
+        final plain = decryptE2eePayloadBytes(_keyPair!, envelope);
+        response.data = data is Map
+            ? json.decode(utf8.decode(plain))
+            : data is String
+                ? utf8.decode(plain)
+                : plain;
       } catch (e) {
         return _refuse(handler, request, E2EEResponseError.undecryptable(path, e));
       }
@@ -390,13 +413,13 @@ class BellaE2eeInterceptor extends Interceptor {
       final wrappedDek = response.headers.value('x-bella-wrapped-dek');
       if (wrappedDek != null) {
         final path = response.requestOptions.uri.path;
-        // Extract project + env slugs from a path like:
-        //   /api/v1/projects/{projectSlug}/environments/{envSlug}/secrets
-        final slugMatch = RegExp(
-          r'/projects/([^/]+)/environments/([^/]+)/secrets',
-        ).firstMatch(path);
-        final projectSlug = slugMatch?.group(1) ?? '';
-        final envSlug = slugMatch?.group(2) ?? '';
+        // Extract project + env slugs independently (#1162): the key is now presented on every
+        // envelope-required read, and `…/environments/{e}/providers/{v}/secrets` (listSecrets, which the
+        // API answers with a wrapped DEK) or `/projects/{p}/secrets` has no `/environments/{e}/secrets`.
+        final projectSlug =
+            RegExp(r'/projects/([^/]+)').firstMatch(path)?.group(1) ?? '';
+        final envSlug =
+            RegExp(r'/environments/([^/]+)').firstMatch(path)?.group(1) ?? '';
         final leaseExpiresStr =
             response.headers.value('x-bella-lease-expires');
         final leaseExpires =
@@ -406,6 +429,22 @@ class BellaE2eeInterceptor extends Interceptor {
     }
 
     handler.next(response);
+  }
+
+  /// The envelope in a response body, whatever `responseType` the request used: already-decoded JSON
+  /// (the default), a String (`ResponseType.plain`) or bytes (`ResponseType.bytes`). Null when the body is
+  /// not an `{"encrypted": true, …}` object.
+  static Map<String, dynamic>? _envelopeOf(Object? data) {
+    Object? decoded = data;
+    if (data is String || data is List<int>) {
+      try {
+        decoded = json.decode(data is String ? data : utf8.decode(data as List<int>));
+      } catch (_) {
+        return null;
+      }
+    }
+    if (decoded is Map && decoded['encrypted'] == true) return decoded.cast<String, dynamic>();
+    return null;
   }
 
   /// Rejects with a [DioException] whose `error` is [err]. The refused response is deliberately NOT

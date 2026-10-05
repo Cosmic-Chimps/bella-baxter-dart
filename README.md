@@ -71,7 +71,28 @@ print(secrets.apiPort);
 client.watchSecrets(interval: Duration(minutes: 5)).listen((secrets) {
   // Called immediately, then every 5 minutes
   setState(() => _dbUrl = secrets['DATABASE_URL']);
+}, onError: (Object e) {
+  // A failed poll: no network, an expired or revoked credential, or an E2EEResponseError
+  // (e2ee-plaintext-response / e2ee-decryption-failed). Polling continues.
+  setState(() => _error = e is E2EEResponseError ? e.code : '$e');
 });
+```
+
+A failed poll re-emits the last known good value and then delivers the failure as an error event, so the
+stream never closes on connectivity loss but a failure is never silent. Don't subscribe with
+`cancelOnError: true` unless the first failure should stop polling.
+
+## Full API and the secret-value reads
+
+`client.api` is the generated client for the full API on the same Dio, so every secret-value read made
+through it (`getSecret`, `getSecretVersion`, `listSecrets`, the exports, the global list) presents the
+E2EE key and is decrypted transparently, exactly like `pullSecrets`:
+
+```dart
+final item = (await client.api.dio.get<Map<String, dynamic>>(
+        '/api/v1/projects/my-app/environments/prod/providers/vault/secrets/DATABASE_URL'))
+    .data!;
+print(item['value']);
 ```
 
 ## Offline-first caching

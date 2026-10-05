@@ -222,12 +222,10 @@ import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_get_
 import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_get_version_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_system_endpoints_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_accept_tenant_invite_api.dart';
-import 'package:bella_baxter/src/api/bella_baxter_features_tenants_change_tenant_plan_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_change_tenant_user_role_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_configure_oidc_sso_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_configure_saml_sso_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_create_own_tenant_api.dart';
-import 'package:bella_baxter/src/api/bella_baxter_features_tenants_create_tenant_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_create_tenant_invite_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_devices_get_zke_readiness_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_devices_get_zke_status_api.dart';
@@ -237,14 +235,12 @@ import 'package:bella_baxter/src/api/bella_baxter_features_tenants_devices_revok
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_download_emergency_kit_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_billing_statements_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_sso_config_api.dart';
-import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_encryption_key_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_features_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_invite_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_usage_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_list_tenant_invites_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_list_tenant_users_api.dart';
-import 'package:bella_baxter/src/api/bella_baxter_features_tenants_list_tenants_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_migrate_tenant_encryption_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_protected_tenant_endpoint_example_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_recover_tenant_encryption_key_api.dart';
@@ -1618,12 +1614,6 @@ class BellaBaxter {
     return BellaBaxterFeaturesTenantsAcceptTenantInviteApi(dio, serializers);
   }
 
-  /// Get BellaBaxterFeaturesTenantsChangeTenantPlanApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  BellaBaxterFeaturesTenantsChangeTenantPlanApi getBellaBaxterFeaturesTenantsChangeTenantPlanApi() {
-    return BellaBaxterFeaturesTenantsChangeTenantPlanApi(dio, serializers);
-  }
-
   /// Get BellaBaxterFeaturesTenantsChangeTenantUserRoleApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsChangeTenantUserRoleApi getBellaBaxterFeaturesTenantsChangeTenantUserRoleApi() {
@@ -1646,12 +1636,6 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsCreateOwnTenantApi getBellaBaxterFeaturesTenantsCreateOwnTenantApi() {
     return BellaBaxterFeaturesTenantsCreateOwnTenantApi(dio, serializers);
-  }
-
-  /// Get BellaBaxterFeaturesTenantsCreateTenantApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  BellaBaxterFeaturesTenantsCreateTenantApi getBellaBaxterFeaturesTenantsCreateTenantApi() {
-    return BellaBaxterFeaturesTenantsCreateTenantApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesTenantsCreateTenantInviteApi instance, base route and serializer can be overridden by a given but be careful,
@@ -1708,12 +1692,6 @@ class BellaBaxter {
     return BellaBaxterFeaturesTenantsGetSsoConfigApi(dio, serializers);
   }
 
-  /// Get BellaBaxterFeaturesTenantsGetTenantApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  BellaBaxterFeaturesTenantsGetTenantApi getBellaBaxterFeaturesTenantsGetTenantApi() {
-    return BellaBaxterFeaturesTenantsGetTenantApi(dio, serializers);
-  }
-
   /// Get BellaBaxterFeaturesTenantsGetTenantEncryptionKeyApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsGetTenantEncryptionKeyApi getBellaBaxterFeaturesTenantsGetTenantEncryptionKeyApi() {
@@ -1748,12 +1726,6 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsListTenantUsersApi getBellaBaxterFeaturesTenantsListTenantUsersApi() {
     return BellaBaxterFeaturesTenantsListTenantUsersApi(dio, serializers);
-  }
-
-  /// Get BellaBaxterFeaturesTenantsListTenantsApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  BellaBaxterFeaturesTenantsListTenantsApi getBellaBaxterFeaturesTenantsListTenantsApi() {
-    return BellaBaxterFeaturesTenantsListTenantsApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesTenantsMigrateTenantEncryptionApi instance, base route and serializer can be overridden by a given but be careful,
