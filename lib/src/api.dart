@@ -218,7 +218,6 @@ import 'package:bella_baxter/src/api/bella_baxter_features_shares_unlock_share_a
 import 'package:bella_baxter/src/api/bella_baxter_features_spiffe_get_attestation_vocabulary_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_ssh_list_ssh_logs_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_super_admin_get_user_tenants_api.dart';
-import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_diagnostics_endpoint_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_get_integration_info_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_get_version_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_system_endpoints_api.dart';
@@ -1593,12 +1592,6 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesSuperAdminGetUserTenantsApi getBellaBaxterFeaturesSuperAdminGetUserTenantsApi() {
     return BellaBaxterFeaturesSuperAdminGetUserTenantsApi(dio, serializers);
-  }
-
-  /// Get BellaBaxterFeaturesSystemEndpointsDiagnosticsEndpointApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  BellaBaxterFeaturesSystemEndpointsDiagnosticsEndpointApi getBellaBaxterFeaturesSystemEndpointsDiagnosticsEndpointApi() {
-    return BellaBaxterFeaturesSystemEndpointsDiagnosticsEndpointApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesSystemEndpointsGetIntegrationInfoApi instance, base route and serializer can be overridden by a given but be careful,

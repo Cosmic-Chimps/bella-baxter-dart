@@ -216,24 +216,92 @@ Uint8List _bigIntToBytes32(BigInt value) {
       32, (i) => int.parse(padded.substring(i * 2, i * 2 + 2), radix: 16)));
 }
 
+// ── #1050: a presented key requires an envelope ─────────────────────────────
+
+/// A secrets response was refused because it was not the E2EE envelope this client asked for, or the
+/// envelope would not decrypt (#1050, `apps/sdk/SDK_CONTRACT.md`, "Rule: a presented key requires an
+/// envelope"). Never a plaintext fallback: the caller gets this error, not the values.
+///
+/// [code] is the stable, cross-SDK contract: [plaintextResponse] or [decryptionFailed]. The message names
+/// the request path only — never the body, ciphertext or key material. The underlying failure, if any,
+/// is [cause].
+class E2EEResponseError implements Exception {
+  /// A `2xx` answer to an envelope-required read, sent with `X-E2E-Public-Key`, that is not an envelope.
+  static const String plaintextResponse = 'e2ee-plaintext-response';
+
+  /// An `"encrypted": true` envelope with a missing/undecodable field, a failing GCM tag (tampered), or
+  /// encrypted to a key other than the one presented.
+  static const String decryptionFailed = 'e2ee-decryption-failed';
+
+  /// [plaintextResponse] or [decryptionFailed].
+  final String code;
+
+  /// The request path the refused response answered.
+  final String path;
+
+  /// Human-readable, ends with the [code] in parentheses.
+  final String message;
+
+  /// What failed underneath, for [decryptionFailed]; never part of [message].
+  final Object? cause;
+
+  E2EEResponseError._(this.code, this.path, this.message, this.cause);
+
+  /// The answer was plaintext although the key was presented.
+  factory E2EEResponseError.plaintextReceived(String path) => E2EEResponseError._(
+        plaintextResponse,
+        path,
+        'E2EE response expected but plaintext received for $path; '
+        'refusing it ($plaintextResponse)',
+        null,
+      );
+
+  /// The envelope did not decrypt.
+  factory E2EEResponseError.undecryptable(String path, [Object? cause]) =>
+      E2EEResponseError._(
+        decryptionFailed,
+        path,
+        'E2EE response could not be decrypted for $path; '
+        'refusing it ($decryptionFailed)',
+        cause,
+      );
+
+  @override
+  String toString() => 'E2EEResponseError: $message';
+}
+
+/// Whether a `2xx` answer to [method] [path] must be an E2EE envelope when `X-E2E-Public-Key` was
+/// presented: the GETs that carry secret VALUES (`SDK_CONTRACT.md`, "Which Endpoints Support E2EE").
+/// Everything else under `/secrets` carries no value and is answered in plain JSON.
+bool requiresEnvelope(String method, String path) {
+  if (method.toUpperCase() != 'GET') return false;
+  const marker = '/api/v1/projects/';
+  final i = path.indexOf(marker);
+  if (i < 0) return false;
+  final segs = path.substring(i + marker.length).split('/');
+  if (segs.length < 2 || segs[0].isEmpty) return false;
+  final r = segs.sublist(1);
+  bool any(int idx) => r[idx].isNotEmpty;
+  // /projects/{p}/secrets — listGlobalSecrets
+  if (r.length == 1) return r[0] == 'secrets';
+  if (r[0] != 'environments' || !any(1)) return false;
+  // /environments/{e}/secrets[/export]
+  if (r.length == 3) return r[2] == 'secrets';
+  if (r.length == 4 && r[2] == 'secrets') return r[3] == 'export';
+  if (r[2] != 'providers' || r.length < 5 || !any(3) || r[4] != 'secrets') return false;
+  // /environments/{e}/providers/{v}/secrets — listSecrets
+  if (r.length == 5) return true;
+  // .../secrets/export (exportSecrets) or .../secrets/{key} (getSecret), never .../secrets/hash
+  if (r.length == 6) return any(5) && r[5] != 'hash';
+  // .../secrets/{key}/versions/{n} — getSecretVersion
+  if (r.length == 8) {
+    return any(5) && r[6] == 'versions' && RegExp(r'^[0-9]+$').hasMatch(r[7]);
+  }
+  return false;
+}
+
 // ── Dio interceptor ──────────────────────────────────────────────────────────
 
-/// Dio interceptor that adds end-to-end encryption (ECIES/ECDH-P256 + AES-256-GCM)
-/// to the Bella Baxter `getAllEnvironmentSecrets` endpoint.
-///
-/// When active, GET requests whose path ends with `/environments/{slug}/secrets`
-/// receive an `X-E2E-Public-Key` header (the client's ephemeral P-256 SPKI public
-/// key). The server encrypts the response with a freshly-generated ephemeral key.
-/// This interceptor decrypts the response transparently before Dio deserializes it,
-/// so the calling code sees a plain `AllEnvironmentSecretsResponse` JSON map.
-///
-/// The crypto operations mirror the JS, Go, and .NET SDKs:
-///   ECDH-P256 → HKDF-SHA256 (salt=32 zeros, info="bella-e2ee-v1") → AES-256-GCM
-///
-/// **ZKE mode**: pass [privateKeyBytes] (PKCS#8 DER) to use a persistent device
-/// key instead of generating an ephemeral key per client instance.  The
-/// [onWrappedDekReceived] callback is invoked whenever the server returns an
-/// `X-Bella-Wrapped-Dek` header (ZKE key-wrapping response).
 class BellaE2eeInterceptor extends Interceptor {
   /// Optional PKCS#8 DER bytes for the persistent device key (ZKE mode).
   /// When null an ephemeral P-256 key pair is generated once per client instance.
@@ -265,6 +333,10 @@ class BellaE2eeInterceptor extends Interceptor {
     _publicKeySpkiB64 = e2eePublicKeyToSpkiB64(_keyPair!);
   }
 
+  /// Set on a request's `extra` when this interceptor presented the key, so the response is judged by
+  /// what was actually sent — not by whether a key pair happens to exist on the instance.
+  static const String keyPresentedExtra = 'bella.e2ee.keyPresented';
+
   /// Returns `true` when [path] is the all-environment-secrets endpoint.
   /// Matches `/environments/{slug}/secrets` (no trailing path segments).
   static bool isSecretsEndpoint(String path) =>
@@ -277,6 +349,7 @@ class BellaE2eeInterceptor extends Interceptor {
     if (options.method == 'GET' && isSecretsEndpoint(options.uri.path)) {
       _ensureKeyPair();
       options.headers['X-E2E-Public-Key'] = _publicKeySpkiB64;
+      options.extra[keyPresentedExtra] = true;
     }
     handler.next(options);
   }
@@ -287,14 +360,28 @@ class BellaE2eeInterceptor extends Interceptor {
     ResponseInterceptorHandler handler,
   ) {
     final data = response.data;
-    if (_keyPair != null && data is Map && data['encrypted'] == true) {
+    final request = response.requestOptions;
+    final path = request.uri.path;
+    final presented = request.extra[keyPresentedExtra] == true;
+    final status = response.statusCode ?? 0;
+    final isEnvelope = data is Map && data['encrypted'] == true;
+
+    if (_keyPair != null && isEnvelope) {
+      // #1050 — an envelope that will not decrypt (tampered, wrong key, malformed) is REFUSED. It used to
+      // be passed through raw, so the caller could read the envelope's fields as its "secrets".
       try {
         response.data =
             decryptE2eePayload(_keyPair!, data.cast<String, dynamic>());
-      } catch (_) {
-        // Decryption failure → pass through raw data; serialization will fail
-        // downstream and surface a meaningful error to the caller.
+      } catch (e) {
+        return _refuse(handler, request, E2EEResponseError.undecryptable(path, e));
       }
+    } else if (presented &&
+        status >= 200 &&
+        status < 300 &&
+        requiresEnvelope(request.method, path)) {
+      // #1050 (b) — the key was presented on a read the server always encrypts, and the answer is not an
+      // envelope: a header-stripping intermediary or a server regression. Plaintext is never a value here.
+      return _refuse(handler, request, E2EEResponseError.plaintextReceived(path));
     }
 
     // ZKE: invoke callback when the server returns a wrapped DEK.
@@ -319,5 +406,20 @@ class BellaE2eeInterceptor extends Interceptor {
     }
 
     handler.next(response);
+  }
+
+  /// Rejects with a [DioException] whose `error` is [err]. The refused response is deliberately NOT
+  /// attached: for a plaintext refusal it holds the very values that must not reach the caller.
+  void _refuse(
+    ResponseInterceptorHandler handler,
+    RequestOptions request,
+    E2EEResponseError err,
+  ) {
+    handler.reject(DioException(
+      requestOptions: request,
+      error: err,
+      message: err.message,
+      type: DioExceptionType.unknown,
+    ));
   }
 }

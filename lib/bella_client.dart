@@ -425,6 +425,9 @@ class BellaClient {
   /// When [fallbackOnError] is true (default) and the request fails (e.g. no
   /// network, timeout, invalid credentials), an empty map is returned instead of
   /// throwing. Set to false if you need to handle errors explicitly.
+  ///
+  /// An [E2EEResponseError] is always thrown, whatever [fallbackOnError] says: the server answered in
+  /// plaintext although this client presented its E2EE key, or the envelope would not decrypt (#1050).
   Future<Map<String, String>> pullSecrets({
     String? projectRef,
     String? environmentSlug,
@@ -468,6 +471,15 @@ class BellaClient {
       await _cache?.write(result);
       return result;
     } catch (e) {
+      // #1050 — a refused E2EE response is not a connectivity failure: it means the answer was plaintext
+      // although this client presented its key, or the envelope would not decrypt. It is surfaced even
+      // when fallbackOnError is set, and unwrapped from Dio so the caller sees its code.
+      final refused = e is E2EEResponseError
+          ? e
+          : (e is DioException && e.error is E2EEResponseError
+              ? e.error as E2EEResponseError
+              : null);
+      if (refused != null) throw refused;
       if (fallbackOnError) {
         // Try the encrypted cache before giving up.
         final cached = await _tryReadCache();

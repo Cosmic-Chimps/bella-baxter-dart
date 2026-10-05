@@ -3,6 +3,8 @@
 //
 
 export 'package:bella_baxter/src/api.dart';
+// Handwritten (#1050): the error a refused E2EE secrets response raises.
+export 'package:bella_baxter/src/e2ee.dart' show E2EEResponseError;
 export 'package:bella_baxter/src/auth/api_key_auth.dart';
 export 'package:bella_baxter/src/auth/basic_auth.dart';
 export 'package:bella_baxter/src/auth/bearer_auth.dart';
@@ -156,7 +158,6 @@ export 'package:bella_baxter/src/api/bella_baxter_features_shares_list_my_shares
 export 'package:bella_baxter/src/api/bella_baxter_features_shares_revoke_share_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_shares_unlock_share_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_ssh_list_ssh_logs_api.dart';
-export 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_diagnostics_endpoint_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_get_version_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_system_endpoints_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_accept_tenant_invite_api.dart';
@@ -225,7 +226,6 @@ export 'package:bella_baxter/src/model/assign_providers_command.dart';
 export 'package:bella_baxter/src/model/assign_users_request.dart';
 export 'package:bella_baxter/src/model/assign_users_to_environment_request.dart';
 export 'package:bella_baxter/src/model/auth_config_response.dart';
-export 'package:bella_baxter/src/model/auth_diagnostics.dart';
 export 'package:bella_baxter/src/model/aws_region_response.dart';
 export 'package:bella_baxter/src/model/bella_event_data.dart';
 export 'package:bella_baxter/src/model/bella_webhook_payload.dart';
