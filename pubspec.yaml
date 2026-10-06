@@ -26,6 +26,11 @@ dependencies:
   pointycastle: '>=3.7.0 <5.0.0'
 
 dev_dependencies:
+  # Codegen only — never reaches a consumer. analyzer 14.5.0 (2026-10-06) dropped the
+  # `AnalysisOptionsImpl.contextFeatures` setter that build_runner 2.16.1 still calls, and build_runner
+  # allows `analyzer <15.0.0`, so every unpinned `dart pub get` broke the generator with
+  # "Failed to build build_runner". Lift the cap once a build_runner release builds against 14.5+.
+  analyzer: '<14.5.0'
   built_value_generator: '>=8.6.0 <9.0.0'
   build_runner: any
   test: '^1.16.0'
