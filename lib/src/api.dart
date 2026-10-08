@@ -102,6 +102,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_revoke_pki_certificate_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_rotate_jwt_signing_key_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_tidy_pki_certs_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_reestablish_environment_authority_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_remove_provider_from_environment_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_remove_user_from_environment_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_restore_environment_api.dart';
@@ -892,6 +893,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsPkiTidyPkiCertsApi getBellaBaxterFeaturesProjectsEnvironmentsPkiTidyPkiCertsApi() {
     return BellaBaxterFeaturesProjectsEnvironmentsPkiTidyPkiCertsApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsReestablishEnvironmentAuthorityApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsReestablishEnvironmentAuthorityApi getBellaBaxterFeaturesProjectsEnvironmentsReestablishEnvironmentAuthorityApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsReestablishEnvironmentAuthorityApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsEnvironmentsRemoveProviderFromEnvironmentApi instance, base route and serializer can be overridden by a given but be careful,
