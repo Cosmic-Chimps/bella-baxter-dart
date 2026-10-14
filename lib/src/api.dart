@@ -90,6 +90,8 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_leases_list_leases_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_leases_revoke_leases_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_list_environments_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_name_claims_decide_authority_name_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_name_claims_get_authority_name_migration_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_adopt_pki_authority_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_configure_pki_ca_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_pki_create_pki_role_api.dart';
@@ -821,6 +823,18 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsEnvironmentsListEnvironmentsApi getBellaBaxterFeaturesProjectsEnvironmentsListEnvironmentsApi() {
     return BellaBaxterFeaturesProjectsEnvironmentsListEnvironmentsApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsNameClaimsDecideAuthorityNameApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsNameClaimsDecideAuthorityNameApi getBellaBaxterFeaturesProjectsEnvironmentsNameClaimsDecideAuthorityNameApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsNameClaimsDecideAuthorityNameApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsEnvironmentsNameClaimsGetAuthorityNameMigrationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsEnvironmentsNameClaimsGetAuthorityNameMigrationApi getBellaBaxterFeaturesProjectsEnvironmentsNameClaimsGetAuthorityNameMigrationApi() {
+    return BellaBaxterFeaturesProjectsEnvironmentsNameClaimsGetAuthorityNameMigrationApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsEnvironmentsPkiAdoptPkiAuthorityApi instance, base route and serializer can be overridden by a given but be careful,
