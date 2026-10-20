@@ -223,7 +223,6 @@ import 'package:bella_baxter/src/api/bella_baxter_features_ssh_list_ssh_logs_api
 import 'package:bella_baxter/src/api/bella_baxter_features_super_admin_get_user_tenants_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_get_integration_info_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_get_version_api.dart';
-import 'package:bella_baxter/src/api/bella_baxter_features_system_endpoints_system_endpoints_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_accept_tenant_invite_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_change_tenant_user_role_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_configure_oidc_sso_api.dart';
@@ -293,7 +292,6 @@ import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_reactivate_w
 import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_rotate_webhook_secret_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_test_webhook_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_webhooks_update_webhook_api.dart';
-import 'package:bella_baxter/src/api/cert_rotation_api.dart';
 import 'package:bella_baxter/src/api/providers_api.dart';
 
 class BellaBaxter {
@@ -1634,12 +1632,6 @@ class BellaBaxter {
     return BellaBaxterFeaturesSystemEndpointsGetVersionApi(dio, serializers);
   }
 
-  /// Get BellaBaxterFeaturesSystemEndpointsSystemEndpointsApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  BellaBaxterFeaturesSystemEndpointsSystemEndpointsApi getBellaBaxterFeaturesSystemEndpointsSystemEndpointsApi() {
-    return BellaBaxterFeaturesSystemEndpointsSystemEndpointsApi(dio, serializers);
-  }
-
   /// Get BellaBaxterFeaturesTenantsAcceptTenantInviteApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsAcceptTenantInviteApi getBellaBaxterFeaturesTenantsAcceptTenantInviteApi() {
@@ -2052,12 +2044,6 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesWebhooksUpdateWebhookApi getBellaBaxterFeaturesWebhooksUpdateWebhookApi() {
     return BellaBaxterFeaturesWebhooksUpdateWebhookApi(dio, serializers);
-  }
-
-  /// Get CertRotationApi instance, base route and serializer can be overridden by a given but be careful,
-  /// by doing that all interceptors will not be executed
-  CertRotationApi getCertRotationApi() {
-    return CertRotationApi(dio, serializers);
   }
 
   /// Get ProvidersApi instance, base route and serializer can be overridden by a given but be careful,

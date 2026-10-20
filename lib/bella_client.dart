@@ -374,8 +374,8 @@ class BellaClient {
   /// transparently, and a plaintext or undecryptable answer is refused with [E2EEResponseError] (#1162).
   /// The other SDKs expose theirs the same way (Python `client`, Java/PHP `getClient()`, Ruby `client`).
   ///
-  /// Five of the seven secret-value reads are declared as `E2EEncryptedPayload` in the OpenAPI document,
-  /// so their typed methods cannot represent the decrypted body; read those through `api.dio` instead.
+  /// Each of the seven secret-value reads declares the PLAINTEXT it returns in the OpenAPI document (#1187), so
+  /// the typed methods describe the decrypted body; `api.dio` still reads the raw body if you want the bytes.
   BellaBaxter get api => _api;
 
   // ── Key context ───────────────────────────────────────────────────────────
