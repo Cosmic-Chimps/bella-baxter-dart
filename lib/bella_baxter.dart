@@ -439,6 +439,7 @@ export 'package:bella_baxter/src/model/generate_credentials_command.dart';
 export 'package:bella_baxter/src/model/generate_credentials_response.dart';
 export 'package:bella_baxter/src/model/generate_totp_key_request.dart';
 export 'package:bella_baxter/src/model/get_project_response.dart';
+export 'package:bella_baxter/src/model/get_share200_response.dart';
 export 'package:bella_baxter/src/model/global_secret_item.dart';
 export 'package:bella_baxter/src/model/group_assignment_response.dart';
 export 'package:bella_baxter/src/model/group_member_response.dart';
