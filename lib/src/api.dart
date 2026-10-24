@@ -178,6 +178,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_update_workload_identity_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_environments_workload_identities_workload_identity_leases_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_export_project_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_get_project_deletion_preview_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_get_project_encryption_key_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_get_project_get_project_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_get_project_users_api.dart';
@@ -1360,6 +1361,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsExportProjectApi getBellaBaxterFeaturesProjectsExportProjectApi() {
     return BellaBaxterFeaturesProjectsExportProjectApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsGetProjectDeletionPreviewApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsGetProjectDeletionPreviewApi getBellaBaxterFeaturesProjectsGetProjectDeletionPreviewApi() {
+    return BellaBaxterFeaturesProjectsGetProjectDeletionPreviewApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsGetProjectEncryptionKeyApi instance, base route and serializer can be overridden by a given but be careful,
