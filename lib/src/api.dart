@@ -209,11 +209,15 @@ import 'package:bella_baxter/src/api/bella_baxter_features_providers_init_system
 import 'package:bella_baxter/src/api/bella_baxter_features_providers_list_providers_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_providers_search_providers_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_providers_update_provider_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_acknowledge_environment_security_insight_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_acknowledge_project_security_insight_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_get_environment_security_report_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_get_project_security_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_get_tenant_security_summary_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_trigger_environment_scan_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_trigger_project_global_scan_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_withdraw_environment_security_insight_acknowledgement_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_security_intelligence_withdraw_project_security_insight_acknowledgement_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_shares_create_share_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_shares_get_share_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_shares_list_my_shares_api.dart';
@@ -1549,6 +1553,18 @@ class BellaBaxter {
     return BellaBaxterFeaturesProvidersUpdateProviderApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesSecurityIntelligenceAcknowledgeEnvironmentSecurityInsightApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesSecurityIntelligenceAcknowledgeEnvironmentSecurityInsightApi getBellaBaxterFeaturesSecurityIntelligenceAcknowledgeEnvironmentSecurityInsightApi() {
+    return BellaBaxterFeaturesSecurityIntelligenceAcknowledgeEnvironmentSecurityInsightApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesSecurityIntelligenceAcknowledgeProjectSecurityInsightApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesSecurityIntelligenceAcknowledgeProjectSecurityInsightApi getBellaBaxterFeaturesSecurityIntelligenceAcknowledgeProjectSecurityInsightApi() {
+    return BellaBaxterFeaturesSecurityIntelligenceAcknowledgeProjectSecurityInsightApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesSecurityIntelligenceGetEnvironmentSecurityReportApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesSecurityIntelligenceGetEnvironmentSecurityReportApi getBellaBaxterFeaturesSecurityIntelligenceGetEnvironmentSecurityReportApi() {
@@ -1577,6 +1593,18 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesSecurityIntelligenceTriggerProjectGlobalScanApi getBellaBaxterFeaturesSecurityIntelligenceTriggerProjectGlobalScanApi() {
     return BellaBaxterFeaturesSecurityIntelligenceTriggerProjectGlobalScanApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesSecurityIntelligenceWithdrawEnvironmentSecurityInsightAcknowledgementApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesSecurityIntelligenceWithdrawEnvironmentSecurityInsightAcknowledgementApi getBellaBaxterFeaturesSecurityIntelligenceWithdrawEnvironmentSecurityInsightAcknowledgementApi() {
+    return BellaBaxterFeaturesSecurityIntelligenceWithdrawEnvironmentSecurityInsightAcknowledgementApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesSecurityIntelligenceWithdrawProjectSecurityInsightAcknowledgementApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesSecurityIntelligenceWithdrawProjectSecurityInsightAcknowledgementApi getBellaBaxterFeaturesSecurityIntelligenceWithdrawProjectSecurityInsightAcknowledgementApi() {
+    return BellaBaxterFeaturesSecurityIntelligenceWithdrawProjectSecurityInsightAcknowledgementApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesSharesCreateShareApi instance, base route and serializer can be overridden by a given but be careful,
