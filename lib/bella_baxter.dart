@@ -243,6 +243,7 @@ export 'package:bella_baxter/src/api/bella_baxter_features_tenants_accept_tenant
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_change_tenant_user_role_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_configure_oidc_sso_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_configure_saml_sso_api.dart';
+export 'package:bella_baxter/src/api/bella_baxter_features_tenants_create_first_organisation_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_create_own_tenant_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_create_tenant_invite_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_decline_tenant_invite_api.dart';
@@ -276,6 +277,7 @@ export 'package:bella_baxter/src/api/bella_baxter_features_tenants_register_tena
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_member_second_factor_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_sso_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_tenant_user_api.dart';
+export 'package:bella_baxter/src/api/bella_baxter_features_tenants_rename_tenant_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_replace_tenant_invite_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_reprovision_tenant_dek_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_request_invite_address_verification_api.dart';
@@ -395,6 +397,7 @@ export 'package:bella_baxter/src/model/create_audit_stream_destination_request.d
 export 'package:bella_baxter/src/model/create_checkout_session_request.dart';
 export 'package:bella_baxter/src/model/create_checkout_session_response.dart';
 export 'package:bella_baxter/src/model/create_environment_command.dart';
+export 'package:bella_baxter/src/model/create_first_organisation_command.dart';
 export 'package:bella_baxter/src/model/create_group_command.dart';
 export 'package:bella_baxter/src/model/create_invite_command.dart';
 export 'package:bella_baxter/src/model/create_notification_channel_request.dart';
@@ -571,6 +574,8 @@ export 'package:bella_baxter/src/model/register_tenant_encryption_key_request.da
 export 'package:bella_baxter/src/model/register_tenant_encryption_key_response.dart';
 export 'package:bella_baxter/src/model/register_zke_device_request.dart';
 export 'package:bella_baxter/src/model/removal_impact.dart';
+export 'package:bella_baxter/src/model/rename_tenant_command.dart';
+export 'package:bella_baxter/src/model/rename_tenant_response.dart';
 export 'package:bella_baxter/src/model/reprovision_tenant_dek_response.dart';
 export 'package:bella_baxter/src/model/request_audit_stream_replay_request.dart';
 export 'package:bella_baxter/src/model/request_sso_access_response.dart';

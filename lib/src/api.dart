@@ -233,6 +233,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_tenants_accept_tenant
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_change_tenant_user_role_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_configure_oidc_sso_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_configure_saml_sso_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_tenants_create_first_organisation_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_create_own_tenant_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_create_tenant_invite_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_decline_tenant_invite_api.dart';
@@ -266,6 +267,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_tenants_register_tena
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_member_second_factor_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_sso_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_tenant_user_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_tenants_rename_tenant_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_replace_tenant_invite_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_reprovision_tenant_dek_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_request_invite_address_verification_api.dart';
@@ -1707,6 +1709,12 @@ class BellaBaxter {
     return BellaBaxterFeaturesTenantsConfigureSamlSsoApi(dio, serializers);
   }
 
+  /// Get BellaBaxterFeaturesTenantsCreateFirstOrganisationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesTenantsCreateFirstOrganisationApi getBellaBaxterFeaturesTenantsCreateFirstOrganisationApi() {
+    return BellaBaxterFeaturesTenantsCreateFirstOrganisationApi(dio, serializers);
+  }
+
   /// Get BellaBaxterFeaturesTenantsCreateOwnTenantApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsCreateOwnTenantApi getBellaBaxterFeaturesTenantsCreateOwnTenantApi() {
@@ -1903,6 +1911,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsRemoveTenantUserApi getBellaBaxterFeaturesTenantsRemoveTenantUserApi() {
     return BellaBaxterFeaturesTenantsRemoveTenantUserApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesTenantsRenameTenantApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesTenantsRenameTenantApi getBellaBaxterFeaturesTenantsRenameTenantApi() {
+    return BellaBaxterFeaturesTenantsRenameTenantApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesTenantsReplaceTenantInviteApi instance, base route and serializer can be overridden by a given but be careful,
