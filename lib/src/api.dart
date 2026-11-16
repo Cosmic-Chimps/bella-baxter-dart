@@ -44,6 +44,24 @@ import 'package:bella_baxter/src/api/bella_baxter_features_billing_create_billin
 import 'package:bella_baxter/src/api/bella_baxter_features_billing_create_checkout_session_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_billing_stripe_webhook_handler_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_cert_rotation_list_cert_rotation_logs_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_app_get_grant_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_app_read_grant_secrets_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_app_request_setup_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_developer_delete_developer_app_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_developer_get_developer_app_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_developer_list_developer_apps_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_developer_register_developer_app_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_developer_rotate_developer_app_secret_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_developer_submit_developer_app_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_developer_update_developer_app_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_developer_verify_developer_app_domain_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_grants_list_my_grants_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_grants_list_tenant_grants_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_grants_revoke_my_grant_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_grants_revoke_tenant_grant_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_setup_approve_setup_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_setup_decline_setup_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_connected_apps_setup_get_setup_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_dashboard_get_dashboard_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_events_get_sse_stream_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_groups_add_user_to_group_api.dart';
@@ -573,6 +591,114 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesCertRotationListCertRotationLogsApi getBellaBaxterFeaturesCertRotationListCertRotationLogsApi() {
     return BellaBaxterFeaturesCertRotationListCertRotationLogsApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsAppGetGrantApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsAppGetGrantApi getBellaBaxterFeaturesConnectedAppsAppGetGrantApi() {
+    return BellaBaxterFeaturesConnectedAppsAppGetGrantApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsAppReadGrantSecretsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsAppReadGrantSecretsApi getBellaBaxterFeaturesConnectedAppsAppReadGrantSecretsApi() {
+    return BellaBaxterFeaturesConnectedAppsAppReadGrantSecretsApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsAppRequestSetupApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsAppRequestSetupApi getBellaBaxterFeaturesConnectedAppsAppRequestSetupApi() {
+    return BellaBaxterFeaturesConnectedAppsAppRequestSetupApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsDeveloperDeleteDeveloperAppApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsDeveloperDeleteDeveloperAppApi getBellaBaxterFeaturesConnectedAppsDeveloperDeleteDeveloperAppApi() {
+    return BellaBaxterFeaturesConnectedAppsDeveloperDeleteDeveloperAppApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsDeveloperGetDeveloperAppApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsDeveloperGetDeveloperAppApi getBellaBaxterFeaturesConnectedAppsDeveloperGetDeveloperAppApi() {
+    return BellaBaxterFeaturesConnectedAppsDeveloperGetDeveloperAppApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsDeveloperListDeveloperAppsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsDeveloperListDeveloperAppsApi getBellaBaxterFeaturesConnectedAppsDeveloperListDeveloperAppsApi() {
+    return BellaBaxterFeaturesConnectedAppsDeveloperListDeveloperAppsApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsDeveloperRegisterDeveloperAppApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsDeveloperRegisterDeveloperAppApi getBellaBaxterFeaturesConnectedAppsDeveloperRegisterDeveloperAppApi() {
+    return BellaBaxterFeaturesConnectedAppsDeveloperRegisterDeveloperAppApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsDeveloperRotateDeveloperAppSecretApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsDeveloperRotateDeveloperAppSecretApi getBellaBaxterFeaturesConnectedAppsDeveloperRotateDeveloperAppSecretApi() {
+    return BellaBaxterFeaturesConnectedAppsDeveloperRotateDeveloperAppSecretApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsDeveloperSubmitDeveloperAppApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsDeveloperSubmitDeveloperAppApi getBellaBaxterFeaturesConnectedAppsDeveloperSubmitDeveloperAppApi() {
+    return BellaBaxterFeaturesConnectedAppsDeveloperSubmitDeveloperAppApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsDeveloperUpdateDeveloperAppApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsDeveloperUpdateDeveloperAppApi getBellaBaxterFeaturesConnectedAppsDeveloperUpdateDeveloperAppApi() {
+    return BellaBaxterFeaturesConnectedAppsDeveloperUpdateDeveloperAppApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsDeveloperVerifyDeveloperAppDomainApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsDeveloperVerifyDeveloperAppDomainApi getBellaBaxterFeaturesConnectedAppsDeveloperVerifyDeveloperAppDomainApi() {
+    return BellaBaxterFeaturesConnectedAppsDeveloperVerifyDeveloperAppDomainApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsGrantsListMyGrantsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsGrantsListMyGrantsApi getBellaBaxterFeaturesConnectedAppsGrantsListMyGrantsApi() {
+    return BellaBaxterFeaturesConnectedAppsGrantsListMyGrantsApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsGrantsListTenantGrantsApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsGrantsListTenantGrantsApi getBellaBaxterFeaturesConnectedAppsGrantsListTenantGrantsApi() {
+    return BellaBaxterFeaturesConnectedAppsGrantsListTenantGrantsApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsGrantsRevokeMyGrantApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsGrantsRevokeMyGrantApi getBellaBaxterFeaturesConnectedAppsGrantsRevokeMyGrantApi() {
+    return BellaBaxterFeaturesConnectedAppsGrantsRevokeMyGrantApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsGrantsRevokeTenantGrantApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsGrantsRevokeTenantGrantApi getBellaBaxterFeaturesConnectedAppsGrantsRevokeTenantGrantApi() {
+    return BellaBaxterFeaturesConnectedAppsGrantsRevokeTenantGrantApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsSetupApproveSetupApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsSetupApproveSetupApi getBellaBaxterFeaturesConnectedAppsSetupApproveSetupApi() {
+    return BellaBaxterFeaturesConnectedAppsSetupApproveSetupApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsSetupDeclineSetupApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsSetupDeclineSetupApi getBellaBaxterFeaturesConnectedAppsSetupDeclineSetupApi() {
+    return BellaBaxterFeaturesConnectedAppsSetupDeclineSetupApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesConnectedAppsSetupGetSetupApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesConnectedAppsSetupGetSetupApi getBellaBaxterFeaturesConnectedAppsSetupGetSetupApi() {
+    return BellaBaxterFeaturesConnectedAppsSetupGetSetupApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesDashboardGetDashboardApi instance, base route and serializer can be overridden by a given but be careful,
