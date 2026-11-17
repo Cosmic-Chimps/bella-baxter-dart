@@ -215,6 +215,12 @@ import 'package:bella_baxter/src/api/bella_baxter_features_projects_provision_pr
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_remove_project_user_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_rotate_project_dek_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_set_global_secret_provider_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_transfer_abandon_project_transfer_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_transfer_get_project_transfer_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_transfer_get_project_transfer_run_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_transfer_preview_project_transfer_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_transfer_resume_project_transfer_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_projects_transfer_start_project_transfer_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_unassign_provider_from_project_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_update_project_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_projects_update_project_user_permissions_api.dart';
@@ -1617,6 +1623,42 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesProjectsSetGlobalSecretProviderApi getBellaBaxterFeaturesProjectsSetGlobalSecretProviderApi() {
     return BellaBaxterFeaturesProjectsSetGlobalSecretProviderApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsTransferAbandonProjectTransferApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsTransferAbandonProjectTransferApi getBellaBaxterFeaturesProjectsTransferAbandonProjectTransferApi() {
+    return BellaBaxterFeaturesProjectsTransferAbandonProjectTransferApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsTransferGetProjectTransferApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsTransferGetProjectTransferApi getBellaBaxterFeaturesProjectsTransferGetProjectTransferApi() {
+    return BellaBaxterFeaturesProjectsTransferGetProjectTransferApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsTransferGetProjectTransferRunApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsTransferGetProjectTransferRunApi getBellaBaxterFeaturesProjectsTransferGetProjectTransferRunApi() {
+    return BellaBaxterFeaturesProjectsTransferGetProjectTransferRunApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsTransferPreviewProjectTransferApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsTransferPreviewProjectTransferApi getBellaBaxterFeaturesProjectsTransferPreviewProjectTransferApi() {
+    return BellaBaxterFeaturesProjectsTransferPreviewProjectTransferApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsTransferResumeProjectTransferApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsTransferResumeProjectTransferApi getBellaBaxterFeaturesProjectsTransferResumeProjectTransferApi() {
+    return BellaBaxterFeaturesProjectsTransferResumeProjectTransferApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesProjectsTransferStartProjectTransferApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesProjectsTransferStartProjectTransferApi getBellaBaxterFeaturesProjectsTransferStartProjectTransferApi() {
+    return BellaBaxterFeaturesProjectsTransferStartProjectTransferApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesProjectsUnassignProviderFromProjectApi instance, base route and serializer can be overridden by a given but be careful,
