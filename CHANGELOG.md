@@ -10,6 +10,6 @@ All notable changes to the `bella_baxter` Dart SDK are documented here.
 - `BellaClient.fromEnv()` factory — auto-reads `BELLA_BAXTER_URL`, `BELLA_BAXTER_API_KEY`, `BELLA_BAXTER_ACCESS_TOKEN`.
 - `SecretCache` abstract class for offline/encrypted local caching.
 - End-to-end encryption (ECDH-P256 + HKDF-SHA256 + AES-256-GCM) via `BellaE2eeInterceptor`.
-- ZKE (Zero-Knowledge Encryption) support via `BellaClientOptions.privateKey` (PKCS#8 DER device key).
+- Device key support (device-bound encryption) via `BellaClientOptions.privateKey` (PKCS#8 DER device key).
 - `WebhookSignatureVerifier` for verifying `X-Bella-Signature` on incoming webhook requests.
 - `SecretsMapExtension.toEnvFormat()` — export secrets as `.env` file content.

@@ -9,7 +9,7 @@ Pull secrets from Vault, AWS Secrets Manager, Azure Key Vault, and GCP Secret Ma
 - 🔑 **HMAC-signed API keys** (`bax-<id>-<secret>`) and **Bearer JWT / SSO** auth
 - 🔄 **Real-time polling** via `watchSecrets()` — a `Stream` that emits fresh secrets on an interval
 - �� **End-to-end encryption** (ECDH-P256 + HKDF-SHA256 + AES-256-GCM) — server never sees plaintext on the wire
-- 🔐 **ZKE (Zero-Knowledge Encryption)** — persistent device key for offline-capable decryption
+- 🔐 **Device-bound encryption** — persistent device key for offline-capable decryption
 - 📦 **Offline-first caching** — `SecretCache` abstract class; inject your own encrypted storage
 - 🪝 **Webhook verification** — `WebhookSignatureVerifier` for `X-Bella-Signature` headers
 - 📝 **.env export** — `SecretsMapExtension.toEnvFormat()`
@@ -117,7 +117,7 @@ final isValid = WebhookSignatureVerifier.verify(
 );
 ```
 
-## ZKE (Zero-Knowledge Encryption)
+## Device-bound encryption
 
 ```dart
 import 'dart:typed_data';
