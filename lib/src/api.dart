@@ -277,6 +277,7 @@ import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_fe
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_invite_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_member_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_usage_api.dart';
+import 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_usage_breakdown_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_leave_tenant_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_list_my_invitations_api.dart';
 import 'package:bella_baxter/src/api/bella_baxter_features_tenants_list_tenant_invites_api.dart';
@@ -1995,6 +1996,12 @@ class BellaBaxter {
   /// by doing that all interceptors will not be executed
   BellaBaxterFeaturesTenantsGetTenantUsageApi getBellaBaxterFeaturesTenantsGetTenantUsageApi() {
     return BellaBaxterFeaturesTenantsGetTenantUsageApi(dio, serializers);
+  }
+
+  /// Get BellaBaxterFeaturesTenantsGetTenantUsageBreakdownApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BellaBaxterFeaturesTenantsGetTenantUsageBreakdownApi getBellaBaxterFeaturesTenantsGetTenantUsageBreakdownApi() {
+    return BellaBaxterFeaturesTenantsGetTenantUsageBreakdownApi(dio, serializers);
   }
 
   /// Get BellaBaxterFeaturesTenantsLeaveTenantApi instance, base route and serializer can be overridden by a given but be careful,
