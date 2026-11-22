@@ -281,6 +281,7 @@ export 'package:bella_baxter/src/api/bella_baxter_features_tenants_devices_revok
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_devices_start_device_key_rotation_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_download_emergency_kit_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_billing_statements_api.dart';
+export 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_enterprise_request_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_sso_config_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_encryption_key_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_get_tenant_features_api.dart';
@@ -305,6 +306,7 @@ export 'package:bella_baxter/src/api/bella_baxter_features_tenants_remove_tenant
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_rename_tenant_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_replace_tenant_invite_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_reprovision_tenant_dek_api.dart';
+export 'package:bella_baxter/src/api/bella_baxter_features_tenants_request_enterprise_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_request_invite_address_verification_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_request_sso_access_api.dart';
 export 'package:bella_baxter/src/api/bella_baxter_features_tenants_require_member_password_change_api.dart';
@@ -475,6 +477,7 @@ export 'package:bella_baxter/src/model/drop_entry_request.dart';
 export 'package:bella_baxter/src/model/drop_file_request.dart';
 export 'package:bella_baxter/src/model/emergency_kit.dart';
 export 'package:bella_baxter/src/model/emergency_kit_instructions.dart';
+export 'package:bella_baxter/src/model/enterprise_request_response.dart';
 export 'package:bella_baxter/src/model/environment_certificate_item.dart';
 export 'package:bella_baxter/src/model/environment_certificates_response.dart';
 export 'package:bella_baxter/src/model/environment_drift_item.dart';
