@@ -1,30 +1,33 @@
-/// Example: fetch secrets from Bella Baxter using an API key.
+/// Example: fetch secrets from Bella Baxter with an API key.
 ///
 /// Prerequisites:
-/// 1. Create an API key for your environment at https://app.bella-baxter.io
-/// 2. Set the `BELLA_API_KEY` environment variable
+/// 1. Create an API key for your environment in the Bella Baxter console.
+/// 2. Run the example through the CLI, which sets the variables the client reads
+///    (`BELLA_BAXTER_URL` and `BELLA_BAXTER_API_KEY`):
 ///
-/// Run:
-///   dart run example/bella_baxter_example.dart
+///   bella sdk run -- dart run example/bella_baxter_example.dart
+///
+/// Or set those two variables yourself and run `dart run example/bella_baxter_example.dart`.
 library;
 
 import 'dart:io';
 
-import 'package:bella_baxter/bella_baxter.dart';
+import 'package:bella_baxter/bella_client.dart';
 
-void main() async {
-  final apiKey = Platform.environment['BELLA_API_KEY'] ?? '';
-  if (apiKey.isEmpty) {
-    stderr.writeln('Set BELLA_API_KEY environment variable to run this example.');
+Future<void> main() async {
+  final BellaClient client;
+  try {
+    // Reads BELLA_BAXTER_URL and BELLA_BAXTER_API_KEY (or BELLA_BAXTER_ACCESS_TOKEN).
+    client = BellaClient.fromEnv();
+  } on StateError catch (e) {
+    stderr.writeln(e.message);
     exit(1);
   }
 
-  final client = BellaBaxter.withApiKey(apiKey);
-
-  // List secrets for the environment scoped to this API key
-  final secrets = await client.secrets.listSecrets();
-  for (final entry in secrets.entries) {
-    print('${entry.key}=***');
+  // The secrets of the environment the API key is scoped to. Values are never printed.
+  final secrets = await client.pullSecrets();
+  for (final key in secrets.keys) {
+    print('$key=***');
   }
 
   print('Fetched ${secrets.length} secret(s).');
